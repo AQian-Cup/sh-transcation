@@ -24,9 +24,6 @@ export default {
       conTop: {
         display: "flex",
         position: "absolute",
-        backgroundImage: "url(" + require("./Desert.jpg") + ")",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
         width: "100vw",
         height: "100vh",
       },
