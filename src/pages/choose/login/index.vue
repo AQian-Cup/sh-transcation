@@ -7,7 +7,7 @@
         <el-form-item label="密码">
           <el-input placeholder="请输入密码" v-model="form.userpassword" show-password prefix-icon="el-icon-s-opportunity"> </el-input>
         </el-form-item>
-        <el-button round type="primary" @click="onSubmit"> 登录 </el-button>
+        <el-button round type="primary" @click="onSubmit" style="margin-top:30%"> 登录 </el-button>
       </el-form>
     </div>
 </template>

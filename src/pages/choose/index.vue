@@ -9,11 +9,11 @@
     >
       <el-radio-button
         label="登录"
-        style="margin-bottom: 100px"
+        style="margin-bottom: 80px"
       ></el-radio-button>
       <el-radio-button
         label="注册"
-        style="margin-bottom: 100px"
+        style="margin-bottom: 80px"
       ></el-radio-button>
       <router-view></router-view>
     </el-radio-group>

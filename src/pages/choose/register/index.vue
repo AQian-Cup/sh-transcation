@@ -10,7 +10,7 @@
         <el-form-item label="确认密码">
           <el-input placeholder="请再次输入密码" v-model="form.againuserpassword" show-password prefix-icon="el-icon-s-opportunity"> </el-input>
         </el-form-item>
-        <el-button round type="primary" @click="onSubmit"> 注册 </el-button>
+        <el-button round type="primary" @click="onSubmit" style="margin-top:10%"> 注册 </el-button>
       </el-form>
     </div>
 </template>
