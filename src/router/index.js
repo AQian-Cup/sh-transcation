@@ -1,24 +1,31 @@
 import Vue from "vue";
 import Router from "vue-router";
-import login from "../pages/login";
-import register from "../pages/register"
+import login from "../pages/choose/login";
+import register from "../pages/choose/register";
+import choose from "../pages/choose";
 
 Vue.use(Router);
 
 const routes = [
   {
-    path: "/login",
-    component: login
-  },
-
-  {
-    path: "/register",
-    component: register
+    path: "/",
+    component: choose,
+    redirect: "/login",
+    children: [
+      {
+        path: "/login",
+        component: login,
+      },
+      {
+        path: "/register",
+        component: register,
+      },
+    ],
   },
 ];
 
 const router = new Router({
-  routes
-})
+  routes,
+});
 
 export default router;
