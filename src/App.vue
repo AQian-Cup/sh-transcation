@@ -1,20 +1,31 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <home></home>
+    <!-- <router-view></router-view> -->
   </div>
 </template>
 
 <script>
+import home from "./components/home";
 
 export default {
   name: "App",
+  components: {
+    home,
+  },
 };
 </script>
 
 <style>
-* {
-  padding: 0px;
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
   margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
