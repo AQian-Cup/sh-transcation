@@ -6,13 +6,16 @@
     </div>
     <div class="main">
       <navigationbar></navigationbar>
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img :src="url1" /></div>
-          <div class="swiper-slide"><img :src="url2" /></div>
-          <div class="swiper-slide"><img :src="url3" /></div>
-          <div class="swiper-slide"><img :src="url4" /></div>
+      <div>
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img :src="url1" /></div>
+            <div class="swiper-slide"><img :src="url2" /></div>
+            <div class="swiper-slide"><img :src="url3" /></div>
+            <div class="swiper-slide"><img :src="url4" /></div>
+          </div>
         </div>
+        <show></show>
       </div>
       <user></user>
     </div>
@@ -23,6 +26,7 @@
 <script>
 import top from "./top";
 import navigationbar from "./navigationbar";
+import show from "./show";
 import user from "./user";
 import sidebar from "./sidebar";
 import Swiper from "swiper";
@@ -42,6 +46,7 @@ export default {
   components: {
     top,
     navigationbar,
+    show,
     user,
     sidebar,
   },
