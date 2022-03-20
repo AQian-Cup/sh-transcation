@@ -32,11 +32,11 @@ export default {
     changeTo(e) {
       if (e == "登录") {
         this.$router.push({
-          path: "/login",
+          path: "/choose/login",
         });
       } else {
         this.$router.push({
-          path: "/register",
+          path: "/choose/register",
         });
       }
     },

@@ -21,12 +21,12 @@ export default {
   methods: {
     goLogin() {
       this.$router.push({
-        path: "/login"
+        path: "/choose/login"
       });
     },
     goRegister() {
       this.$router.push({
-        path: "/register"
+        path: "/choose/register"
       });
     },
   },

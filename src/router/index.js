@@ -1,27 +1,34 @@
 import Vue from "vue";
 import Router from "vue-router";
-import home from "../home";
+import brand from "../brand";
+import home from "../pages/home";
+import choose from "../pages/choose";
 import login from "../pages/choose/login";
 import register from "../pages/choose/register";
-import choose from "../pages/choose";
 
 Vue.use(Router);
 
 const routes = [
   {
     path: "/",
-    component: home,
+    component: brand,
+    children: [
+      {
+        path: "",
+        component: home
+      },
+    ],
   },
   {
-    path: "/login",
+    path: "/choose",
     component: choose,
     children: [
       {
-        path: "/login",
+        path: "login",
         component: login,
       },
       {
-        path: "/register",
+        path: "register",
         component: register,
       },
     ],
