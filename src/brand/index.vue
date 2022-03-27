@@ -2,7 +2,7 @@
   <div class="bg-color">
     <top></top>
     <div style="display: flex">
-      <img src="./logo.png" class="logo" />
+      <img src="./logo.png" class="logo" @click="backHome" />
     </div>
     <router-view></router-view>
     <sidebar></sidebar>
@@ -24,12 +24,18 @@ export default {
     top,
     sidebar,
   },
+  methods: {
+    backHome() {
+      location.reload(true);
+    },
+  },
   mounted() {},
 };
 </script>
 
-<style>
+<style scoped>
 .logo {
+  cursor: pointer;
   width: 290px;
   height: 100px;
 }

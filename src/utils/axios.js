@@ -1,14 +1,8 @@
 import axios from "axios";
 
 // 创建 axios 实例
-let baseUrl = "/";
-if (process.env.NODE_ENV === "production") {
-  baseUrl = "localhost:8080";
-} else if (process.env.NODE_ENV === "development") {
-  baseUrl = "localhost:8080";
-}
 const service = axios.create({
-  baseURL: baseUrl,
+  baseURL: "http://localhost:8080",
   headers: {
     get: {
       "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
@@ -18,7 +12,7 @@ const service = axios.create({
     },
   },
   // 是否跨站点访问控制请求
-  withCredentials: false,
+  withCredentials: true,
   timeout: 30000,
   //请求数据转换
   transformRequest: [

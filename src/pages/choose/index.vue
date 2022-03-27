@@ -1,11 +1,16 @@
 <template>
   <div class="chooseAll">
+    <div class="logo"><img  @click="backHome" src="../../brand/logo.png" /></div>
     <el-radio-group
       v-model="radio"
       size="medium"
       @change="changeTo"
       class="chooseReal"
-      style="border:2px solid rgba(135, 206, 203, 0.5); border-radius: 20px; padding:3%;"
+      style="
+        border: 2px solid rgba(135, 206, 203, 0.5);
+        border-radius: 20px;
+        padding: 3%;
+      "
     >
       <el-radio-button
         label="登录"
@@ -40,11 +45,26 @@ export default {
         });
       }
     },
+    backHome(){
+      this.$router.push({
+        path:"/"
+      })
+    }
   },
 };
 </script>
 
-<style>
+<style scoped>
+.logo {
+  cursor: pointer;
+  position: absolute;
+  top: 61px;
+  left: 0;
+}
+.logo img {
+  width: 290px;
+  height: 100px;
+}
 .chooseAll {
   display: flex;
   background-image: url("./Desert.jpg");

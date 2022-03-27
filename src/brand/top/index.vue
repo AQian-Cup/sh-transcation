@@ -1,10 +1,8 @@
 <template>
   <div>
     <el-menu
-      :default-active="activeIndex"
       class="el-menu-demo"
       mode="horizontal"
-      @select="handleSelect"
     >
       <el-menu-item>首页</el-menu-item>
       <el-menu-item>公告</el-menu-item>

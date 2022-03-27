@@ -32,8 +32,10 @@ div {
 }
 
 .all {
-  width: 640px;
-  height: 240px;
+  width: 800px;
+  height: 300px;
+  margin-top: 20px;
+  border-radius: 5%/10%;
   justify-content: space-between;
   align-items: center;
   background-color: aquamarine;

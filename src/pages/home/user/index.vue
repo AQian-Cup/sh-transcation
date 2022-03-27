@@ -35,11 +35,11 @@ export default {
 
 <style>
 .user {
+  border: 2px solid skyblue;
   border-radius: 5%;
-  margin-left: 3%;
-  width: 20%;
+  margin-left: 8px;
+  width: 15%;
   height: 50%;
-  background-color: burlywood;
 }
 .message {
   display: flex;

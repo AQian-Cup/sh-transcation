@@ -64,16 +64,17 @@ export default {
   background-color: #fff;
 }
 .swiper-container {
-  width: 640px;
-  height: 360px;
+  width: 800px;
+  height: 450px;
   margin: 0;
+  border-radius: 5%/10%;
 }
 .swiper-slide {
-  width: 100%;
+  width:100%;
   height: 100%;
 }
 .swiper-slide img {
-  width: 100%;
+  width:100%;
   height: 100%;
 }
 </style>
