@@ -42,14 +42,14 @@ div {
 }
 
 .describe1 {
-  width: 480px;
+  width: 600px;
   height: 200px;
   flex-direction: column;
   justify-content: space-around;
 }
 
 .describe2 {
-  width: 160px;
+  width: 200px;
   height: 200px;
   flex-direction: column;
   justify-content: space-around;

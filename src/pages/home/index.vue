@@ -61,13 +61,11 @@ export default {
   width: 100%;
   height: 100%;
   justify-content: center;
-  background-color: #fff;
 }
 .swiper-container {
   width: 800px;
   height: 450px;
   margin: 0;
-  border-radius: 5%/10%;
 }
 .swiper-slide {
   width:100%;

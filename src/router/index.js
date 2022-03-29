@@ -5,6 +5,7 @@ import home from "../pages/home";
 import choose from "../pages/choose";
 import login from "../pages/choose/login";
 import register from "../pages/choose/register";
+import card from "../pages/card";
 
 Vue.use(Router);
 
@@ -15,7 +16,11 @@ const routes = [
     children: [
       {
         path: "",
-        component: home
+        component: home,
+      },
+      {
+        path: "card",
+        component: card,
       },
     ],
   },

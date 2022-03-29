@@ -2,7 +2,6 @@ import axios from "axios";
 
 // 创建 axios 实例
 const service = axios.create({
-  baseURL: "http://localhost:8080",
   headers: {
     get: {
       "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",

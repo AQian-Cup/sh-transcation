@@ -62,7 +62,7 @@ export default {
   left: 0;
 }
 .logo img {
-  width: 290px;
+  width: 280px;
   height: 100px;
 }
 .chooseAll {
