@@ -12,6 +12,10 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "ali1";
+  src: url("./assets/webfont.ttf");
+}
 html {
   width: 100%;
   height: 100%;
