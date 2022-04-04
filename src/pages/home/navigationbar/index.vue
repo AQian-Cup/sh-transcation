@@ -20,6 +20,10 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "navigationbar";
+  src: url("../../../assets/navigationbar.ttf");
+}
 .navigation {
   border: 2px solid lemonchiffon;
   border-radius: 5%;
@@ -43,7 +47,7 @@ export default {
   align-items: center;
   flex: 1;
   cursor: pointer;
-  font-family: "ali1";
+  font-family: "navigationbar";
   font-size: 1.4em;
   transition: font-size 0.2s linear;
   margin: 0;

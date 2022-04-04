@@ -12,7 +12,7 @@
       <el-form-item label="密码">
         <el-input
           placeholder="请输入密码"
-          v-model="form.userpassword"
+          v-model="form.password"
           show-password
           prefix-icon="el-icon-s-opportunity"
         >
@@ -21,7 +21,7 @@
       <el-form-item label="确认密码">
         <el-input
           placeholder="请再次输入密码"
-          v-model="form.againuserpassword"
+          v-model="form.againpassword"
           show-password
           prefix-icon="el-icon-s-opportunity"
         >
@@ -41,20 +41,19 @@ export default {
     return {
       form: {
         username: "",
-        userpassword: "",
-        againuserpassword: "",
+        password: "",
+        againpassword: "",
       },
     };
   },
   methods: {
     onSubmit() {
-      if (this.form.username !== this.form.userpassword) {
+      if (this.form.password !== this.form.againpassword) {
         return console.log("密码不一致");
       }
       let data = {
-        username: this.form.username,
-        userpassword: this.form.userpassword,
-        againuserpassword: this.form.againuserpassword,
+        Username: this.form.username,
+        Password: this.form.password,
       };
       this.$API.register
         .register(data)

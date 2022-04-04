@@ -4,16 +4,14 @@
     <div class="other">
       <img src="./logo.png" class="logo" @click="backHome" />
       <input placeholder="在此处输入搜索内容" class="input" />
-      <button class="search">搜  索</button>
+      <button class="buttonSearch">搜  索</button>
     </div>
     <router-view></router-view>
-    <sidebar></sidebar>
   </div>
 </template>
 
 <script>
 import top from "./top";
-import sidebar from "./sidebar";
 
 export default {
   name: "brand",
@@ -24,22 +22,11 @@ export default {
   },
   components: {
     top,
-    sidebar,
   },
   methods: {
     backHome() {
       location.reload(true);
     },
-  },
-  mounted() {
-    this.$API.show
-      .show()
-      .then((b) => {
-        console.log(b);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   },
 };
 </script>
@@ -68,20 +55,20 @@ export default {
   border: 1px solid rgba(128, 128, 128, 0.5);
   -webkit-appearance:none;
   outline: none;
-  margin-left: 269px;
+  margin-left: 280px;
   padding-left: 18px;
-  width: 650px;
+  width: 600px;
   height: 40px;
   border-radius: 25px;
   font-size: 25px;
 }
-.search{
+.buttonSearch{
   border: 0;
   outline: none;
   cursor: pointer;
   border-radius: 25px;
-  margin-left: 35px;
-  width: 100px;
+  margin-left: 60px;
+  width: 120px;
   height: 40px;
   background-color: rgba(255, 217, 0);
   font-size: 25px;

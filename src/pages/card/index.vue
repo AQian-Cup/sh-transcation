@@ -9,10 +9,10 @@
         <div class="describe">这是描述</div>
         <div class="price">这是价格</div>
       </div>
-      <div class="message">
-        <div class="head"></div>
-        <div></div>
-        <button>与TA私聊</button>
+      <div class="user">
+        <el-avatar shape="square" :size="200" :src="url"></el-avatar>
+        <div class="message">{{ message }}</div>
+        <button class="chat">与TA私聊</button>
       </div>
     </div>
     <div class="commentWrite">
@@ -26,6 +26,12 @@
 <script>
 export default {
   name: "card",
+  data() {
+    return {
+      url: require("../../assets/user.png"),
+      message: "123",
+    };
+  },
 };
 </script>
 
@@ -57,9 +63,29 @@ export default {
   grid-column: 2/3;
   grid-row: 2/3;
 }
-.message {
+.user {
   grid-column: 3/4;
   grid-row: 1/3;
+  background-color: white;
+  border-radius: 5%;
+  border: 2px solid lemonchiffon;
+}
+.message {
+  text-align: left;
+  margin: 5%;
+  height: 30%;
+  border: 1px solid blue;
+  border-radius: 5%;
+  font-size: 20px;
+}
+.chat {
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  width: 60%;
+  height: 15%;
+  font-size: 20px;
+  color: white;
 }
 img {
   width: 100%;

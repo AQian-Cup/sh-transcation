@@ -2,17 +2,9 @@ import axios from "axios";
 
 // 创建 axios 实例
 const service = axios.create({
-  headers: {
-    get: {
-      "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
-    },
-    post: {
-      "Content-Type": "application/json;charset=utf-8",
-    },
-  },
   // 是否跨站点访问控制请求
-  withCredentials: true,
-  timeout: 30000,
+  withCredentials: false,
+  timeout: 5000,
   //请求数据转换
   transformRequest: [
     (data) => {
@@ -31,19 +23,19 @@ const service = axios.create({
 });
 
 // 请求拦截器
-service.interceptors.request.use(
-  (config) => {
-    // 让每个请求携带自定义 token
-    config.headers["Authorization"] = "token";
-    return config;
-  },
-  (error) => {
-    // 错误抛到业务代码
-    error.data = {};
-    error.data.msg = "服务器异常，请联系管理员！";
-    return Promise.resolve(error);
-  }
-);
+// service.interceptors.request.use(
+//   (config) => {
+//     // 让每个请求携带自定义 token
+//     config.headers["Authorization"] = "token";
+//     return config;
+//   },
+//   (error) => {
+//     // 错误抛到业务代码
+//     error.data = {};
+//     error.data.msg = "服务器异常，请联系管理员！";
+//     return Promise.resolve(error);
+//   }
+// );
 
 // 响应拦截器
 service.interceptors.response.use(

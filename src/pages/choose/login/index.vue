@@ -37,19 +37,13 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       let data = {
         username: this.form.username,
         userpassword: this.form.userpassword,
       };
-      this.$API.login
-        .login(data)
-        .then((b) => {
-          console.log(b);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      await this.$API.login.login(data);
+      this.$store.dispatch("userlogin")
     },
   },
 };

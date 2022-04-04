@@ -2,14 +2,16 @@
   <div class="main">
     <navigationbar></navigationbar>
     <div>
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img :src="url1" /></div>
-          <div class="swiper-slide"><img :src="url2" /></div>
-          <div class="swiper-slide"><img :src="url3" /></div>
-          <div class="swiper-slide"><img :src="url4" /></div>
-        </div>
-      </div>
+      <el-carousel height="450px">
+        <el-carousel-item>
+          <img src="./ad1.jpg" />
+        </el-carousel-item>
+        <el-carousel-item>
+          <img src="./ad2.jpg" />
+        </el-carousel-item>
+        <el-carousel-item><img src="./ad3.jpg" /></el-carousel-item>
+        <el-carousel-item><img src="./ad4.jpg" /></el-carousel-item>
+      </el-carousel>
       <div>
         <show></show>
       </div>
@@ -22,9 +24,6 @@
 import navigationbar from "./navigationbar";
 import show from "./show";
 import user from "./user";
-import Swiper from "swiper";
-
-import "swiper/dist/css/swiper.css";
 
 export default {
   name: "home",
@@ -34,6 +33,8 @@ export default {
       url2: require("./ad2.jpg"),
       url3: require("./ad3.jpg"),
       url4: require("./ad4.jpg"),
+      tips:[
+      ]
     };
   },
   components: {
@@ -41,17 +42,9 @@ export default {
     show,
     user,
   },
-  mounted() {
-    new Swiper(".swiper-container", {
-      observer: true,
-      loop: true,
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-      speed: 2000,
-    });
-  },
+  // async mounted() {
+  //   await this.$API.show.show()
+  // },
 };
 </script>
 
@@ -62,17 +55,11 @@ export default {
   height: 100%;
   justify-content: center;
 }
-.swiper-container {
-  width: 800px;
-  height: 450px;
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 150px;
   margin: 0;
-}
-.swiper-slide {
-  width:100%;
-  height: 100%;
-}
-.swiper-slide img {
-  width:100%;
-  height: 100%;
 }
 </style>

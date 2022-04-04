@@ -12,10 +12,6 @@ export default {
 </script>
 
 <style>
-@font-face {
-  font-family: "ali1";
-  src: url("./assets/webfont.ttf");
-}
 html {
   width: 100%;
   height: 100%;
@@ -34,5 +30,6 @@ body {
   width: 100%;
   height: 100%;
   border: hidden;
+  overflow: hidden;
 }
 </style>
