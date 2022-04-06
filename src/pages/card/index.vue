@@ -17,8 +17,14 @@
     </div>
     <div class="commentWrite">
       <div class="commentWriteHead">
-        <textarea placeholder="在此输入你的评论" class="commentWriteContent" />
-        <button class="commentWriteButton">评论</button>
+        <textarea
+          placeholder="在此输入你的评论"
+          class="commentWriteContent"
+          v-model="commit"
+        />
+        <button @click="goCommit" class="commentWriteButton">
+          评&nbsp;&nbsp;论
+        </button>
       </div>
     </div>
   </div>
@@ -31,7 +37,16 @@ export default {
     return {
       url: require("../../assets/user.png"),
       message: "123",
+      commit: "",
     };
+  },
+  methods: {
+    async goCommit() {
+      let req = {
+        Commit: this.commit,
+      };
+      await this.$API.commit.commit(req);
+    },
   },
 };
 </script>
@@ -90,7 +105,7 @@ img {
   color: white;
   background-color: aquamarine;
 }
-.commentWriteHead{
+.commentWriteHead {
   display: flex;
   justify-content: center;
   margin-top: 64px;
@@ -102,11 +117,13 @@ img {
   border-radius: 1%/3%;
   font-family: "微软雅黑";
 }
-.commentWriteButton{
+.commentWriteButton {
   width: 128px;
   border-radius: 3%/6%;
   margin-left: 3%;
-  font-size:32px;
+  font-size: 32px;
   font-family: "微软雅黑";
+  background-color: rgba(255, 217, 0);
+  color: white;
 }
 </style>

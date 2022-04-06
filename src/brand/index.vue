@@ -3,8 +3,13 @@
     <top></top>
     <div class="other">
       <img src="./logo.png" class="logo" @click="backHome" />
-      <input placeholder="在此处输入搜索内容" class="input" />
-      <button class="buttonSearch">搜&nbsp;&nbsp;索</button>
+      <input
+        v-model="input"
+        placeholder="在此处输入搜索内容"
+        @keydown.enter="goSearch"
+        class="input"
+      />
+      <button @click="goSearch" class="buttonSearch">搜&nbsp;&nbsp;索</button>
     </div>
     <router-view></router-view>
   </div>
@@ -17,7 +22,7 @@ export default {
   name: "brand",
   data() {
     return {
-      items: [],
+      input: "",
     };
   },
   components: {
@@ -26,6 +31,16 @@ export default {
   methods: {
     backHome() {
       location.reload(true);
+    },
+    async goSearch() {
+      if (this.input == "") {
+        this.$message("请输入搜索内容");
+        return;
+      }
+      let req = {
+        Content: this.input,
+      };
+      await this.$API.search.search(req);
     },
   },
 };
@@ -53,7 +68,7 @@ export default {
 }
 .input {
   border: 1px solid rgba(128, 128, 128, 0.5);
-  -webkit-appearance:none;
+  -webkit-appearance: none;
   outline: none;
   margin-left: 280px;
   padding-left: 18px;
@@ -62,13 +77,13 @@ export default {
   border-radius: 25px;
   font-size: 25px;
 }
-.buttonSearch{
+.buttonSearch {
   border-radius: 25px;
   margin-left: 60px;
   width: 120px;
   height: 40px;
   background-color: rgba(255, 217, 0);
   font-size: 25px;
-  color:white;
+  color: white;
 }
 </style>

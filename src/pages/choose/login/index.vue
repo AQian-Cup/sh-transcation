@@ -38,11 +38,11 @@ export default {
   },
   methods: {
     async onSubmit() {
-      let data = {
+      let req = {
         Username: this.form.username,
         Password: this.form.password,
       };
-      await this.$API.login.login(data);
+      await this.$API.login.login(req);
       // this.$store.dispatch("userlogin")
     },
   },

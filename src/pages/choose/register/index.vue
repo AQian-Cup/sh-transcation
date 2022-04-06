@@ -51,11 +51,11 @@ export default {
       if (this.form.password !== this.form.againpassword) {
         return console.log("密码不一致");
       }
-      let data = {
+      let req = {
         Username: this.form.username,
         Password: this.form.password,
       };
-      await this.$API.register.register(data)
+      await this.$API.register.register(req)
     },
   },
 };

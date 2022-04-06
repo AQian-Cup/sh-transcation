@@ -45,6 +45,7 @@ export default {
       res: {},
     };
   },
+  props: ["searchReq"],
   components: {
     navigationbar,
     show,
