@@ -9,11 +9,20 @@
         <el-carousel-item>
           <img src="./ad2.jpg" />
         </el-carousel-item>
-        <el-carousel-item><img src="./ad3.jpg" /></el-carousel-item>
-        <el-carousel-item><img src="./ad4.jpg" /></el-carousel-item>
+        <el-carousel-item>
+          <img src="./ad3.jpg" />
+        </el-carousel-item>
+        <el-carousel-item>
+          <img src="./ad4.jpg" />
+        </el-carousel-item>
       </el-carousel>
       <div>
-        <show></show>
+        <show
+          :title="res.data.Title"
+          :author="res.data.Uaccount"
+          :time="res.data.Ptime"
+          :content="res.data.Content"
+        ></show>
       </div>
     </div>
     <user></user>
@@ -33,8 +42,7 @@ export default {
       url2: require("./ad2.jpg"),
       url3: require("./ad3.jpg"),
       url4: require("./ad4.jpg"),
-      tips:[
-      ]
+      res: {},
     };
   },
   components: {
@@ -42,24 +50,22 @@ export default {
     show,
     user,
   },
-  // async mounted() {
-  //   await this.$API.show.show()
-  // },
+  async mounted() {
+    this.res = await this.$API.show.show();
+    console.log(this.res);
+  },
 };
 </script>
 
-<style>
+<style scoped>
 .main {
   display: flex;
   width: 100%;
   height: 100%;
   justify-content: center;
 }
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 150px;
-  margin: 0;
+img {
+  width: 100%;
+  height: 100%;
 }
 </style>

@@ -9,7 +9,7 @@
       <div class="message">
         <div>个人信息</div>
         <div>我的消息</div>
-        <div>退出</div>
+        <div>设置</div>
       </div>
     </div>
   </div>
@@ -101,6 +101,13 @@ export default {
   text-align: center;
   margin-top: 10%;
   width: 70%;
+}
+.message > div{
+  cursor: pointer;
+  font-size: 20px;
+  font-family: "微软雅黑";
+  font-weight: bold;
+  color: gray;
 }
 .message > div + div {
   margin-top: 25%;

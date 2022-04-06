@@ -12,7 +12,7 @@
       <el-form-item label="密码">
         <el-input
           placeholder="请输入密码"
-          v-model="form.userpassword"
+          v-model="form.password"
           show-password
           prefix-icon="el-icon-s-opportunity"
         >
@@ -32,18 +32,18 @@ export default {
     return {
       form: {
         username: "",
-        userpassword: "",
+        password: "",
       },
     };
   },
   methods: {
     async onSubmit() {
       let data = {
-        username: this.form.username,
-        userpassword: this.form.userpassword,
+        Username: this.form.username,
+        Password: this.form.password,
       };
       await this.$API.login.login(data);
-      this.$store.dispatch("userlogin")
+      // this.$store.dispatch("userlogin")
     },
   },
 };

@@ -4,7 +4,7 @@ import axios from "axios";
 const service = axios.create({
   // 是否跨站点访问控制请求
   withCredentials: false,
-  timeout: 5000,
+  timeout: 3000,
   //请求数据转换
   transformRequest: [
     (data) => {

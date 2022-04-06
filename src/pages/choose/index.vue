@@ -1,9 +1,9 @@
 <template>
   <div class="chooseAll">
-    <div class="logo"><img  @click="backHome" src="../../brand/logo.png" /></div>
+    <div class="logo"><img @click="backHome" src="../../brand/logo.png" /></div>
     <el-radio-group
-      v-model="radio"
       size="medium"
+      v-model="radio"
       @change="changeTo"
       class="chooseReal"
       style="
@@ -12,14 +12,12 @@
         padding: 3%;
       "
     >
-      <el-radio-button
-        label="登录"
-        style="margin-bottom: 80px"
-      ></el-radio-button>
-      <el-radio-button
-        label="注册"
-        style="margin-bottom: 80px"
-      ></el-radio-button>
+      <el-radio-button label="/choose/login" style="margin-bottom: 80px"
+        >登录</el-radio-button
+      >
+      <el-radio-button label="/choose/register" style="margin-bottom: 80px"
+        >注册</el-radio-button
+      >
       <router-view></router-view>
     </el-radio-group>
   </div>
@@ -30,19 +28,20 @@ export default {
   name: "choose",
   data() {
     return {
-      radio: "登录",
-    };
+      radio:"/choose/login"
+    }
   },
   methods: {
     changeTo(e) {
-      if (e == "登录") {
+      if (e == "/choose/login") {
         this.$router.push({
           path: "/choose/login",
         });
-      } else {
+      } 
+      if(e == "/choose/register"){
         this.$router.push({
-          path: "/choose/register",
-        });
+          path:"/choose/register"
+        })
       }
     },
     backHome(){
@@ -50,7 +49,7 @@ export default {
         path:"/"
       })
     }
-  },
+  }
 };
 </script>
 

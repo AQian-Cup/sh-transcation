@@ -4,7 +4,7 @@
     <div class="other">
       <img src="./logo.png" class="logo" @click="backHome" />
       <input placeholder="在此处输入搜索内容" class="input" />
-      <button class="buttonSearch">搜  索</button>
+      <button class="buttonSearch">搜&nbsp;&nbsp;索</button>
     </div>
     <router-view></router-view>
   </div>
@@ -63,9 +63,6 @@ export default {
   font-size: 25px;
 }
 .buttonSearch{
-  border: 0;
-  outline: none;
-  cursor: pointer;
   border-radius: 25px;
   margin-left: 60px;
   width: 120px;

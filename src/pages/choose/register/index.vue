@@ -47,7 +47,7 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       if (this.form.password !== this.form.againpassword) {
         return console.log("密码不一致");
       }
@@ -55,14 +55,7 @@ export default {
         Username: this.form.username,
         Password: this.form.password,
       };
-      this.$API.register
-        .register(data)
-        .then((b) => {
-          console.log(b);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      await this.$API.register.register(data)
     },
   },
 };

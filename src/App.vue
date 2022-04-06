@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 export default {
   name: "App",
 };
@@ -31,5 +30,14 @@ body {
   height: 100%;
   border: hidden;
   overflow: hidden;
+}
+textarea {
+  resize: none;
+}
+button {
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
 }
 </style>

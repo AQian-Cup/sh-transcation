@@ -16,9 +16,10 @@
       </div>
     </div>
     <div class="commentWrite">
-      <div class="commentWriteHead"></div>
-      <input class="commentWriteContent" />
-      <button>评论</button>
+      <div class="commentWriteHead">
+        <textarea placeholder="在此输入你的评论" class="commentWriteContent" />
+        <button class="commentWriteButton">评论</button>
+      </div>
     </div>
   </div>
 </template>
@@ -35,7 +36,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+img {
+  width: 100%;
+  height: 100%;
+}
 .show {
   display: grid;
   grid-template-columns: 2fr 3fr 1fr;
@@ -74,21 +79,34 @@ export default {
   text-align: left;
   margin: 5%;
   height: 30%;
-  border: 1px solid blue;
   border-radius: 5%;
   font-size: 20px;
 }
 .chat {
-  border: 0;
-  outline: none;
-  cursor: pointer;
+  border-radius: 5%/10%;
   width: 60%;
   height: 15%;
   font-size: 20px;
   color: white;
+  background-color: aquamarine;
 }
-img {
-  width: 100%;
-  height: 100%;
+.commentWriteHead{
+  display: flex;
+  justify-content: center;
+  margin-top: 64px;
+  height: 96px;
+}
+.commentWriteContent {
+  width: 800px;
+  margin-right: 3%;
+  border-radius: 1%/3%;
+  font-family: "微软雅黑";
+}
+.commentWriteButton{
+  width: 128px;
+  border-radius: 3%/6%;
+  margin-left: 3%;
+  font-size:32px;
+  font-family: "微软雅黑";
 }
 </style>
