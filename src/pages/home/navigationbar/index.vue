@@ -28,16 +28,16 @@ export default {
   border: 2px solid lemonchiffon;
   border-radius: 5%;
   margin-right: 8px;
-  width: 15%;
-  height: 50%;
+  width: 285px;
+  height: 475px;
   overflow: auto;
+  background-color: white;
 }
 .list {
   display: flex;
   height: 100%;
   flex-direction: column;
   justify-content: space-around;
-  background-color: white;
   margin: 0;
   padding: 0;
 }

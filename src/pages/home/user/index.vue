@@ -7,9 +7,9 @@
         <button class="buttonRegister" @click="goRegister">注&nbsp;&nbsp;&nbsp;册</button>
       </div>
       <div class="message">
-        <div>个人信息</div>
+        <div>个人设置</div>
         <div>我的消息</div>
-        <div>设置</div>
+        <div>我的帖子</div>
       </div>
     </div>
   </div>
@@ -47,8 +47,8 @@ export default {
   border: 2px solid lemonchiffon;
   border-radius: 5%;
   margin-left: 8px;
-  width: 15%;
-  height: 50%;
+  width: 285px;
+  height: 475px;
   background-color: white;
 }
 .content {

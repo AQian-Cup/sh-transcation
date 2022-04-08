@@ -18,10 +18,12 @@
       </el-carousel>
       <div>
         <show
-          :title="res.data.Title"
-          :author="res.data.Uaccount"
-          :time="res.data.Ptime"
-          :content="res.data.Content"
+          v-for="item in res.data"
+          :key="item.Iid"
+          :title="item.Title"
+          :content="item.Content"
+          :time="item.Time"
+          :author="item.Username"
         ></show>
       </div>
     </div>
@@ -45,7 +47,7 @@ export default {
       res: {},
     };
   },
-  props: ["searchReq"],
+  props: ["searchRes"],
   components: {
     navigationbar,
     show,
@@ -53,7 +55,7 @@ export default {
   },
   async mounted() {
     this.res = await this.$API.show.show();
-    console.log(this.res);
+    console.log(this.res.data);
   },
 };
 </script>

@@ -14,7 +14,7 @@ const service = axios.create({
   //相应数据转换
   transformResponse: [
     (data) => {
-      if (typeof data === "string" && data.startsWith("{")) {
+      if (typeof data === "string") {
         data = JSON.parse(data);
       }
       return data;
