@@ -1,6 +1,6 @@
 <template>
-  <div class="all">
-    <img src="./imagetest.png" />
+  <div class="all" @click="jump">
+    <img :src="this.img" />
     <div class="describe1">
       <div>{{ title }}</div>
       <div>{{ content }}</div>
@@ -15,10 +15,23 @@
 <script>
 export default {
   name: "show",
-  props: ["title", "content", "time", "author"],
+  props: ["title", "content", "time", "author", "postId"],
   data() {
-    return {};
+    return {
+      img: require("./imagetest.png"),
+    };
   },
+  methods: {
+    jump() {
+      this.$router.push({
+        path: "/posts",
+        query: {
+          postId: this.postId,
+        },
+      });
+    },
+  },
+  async mounted() {},
 };
 </script>
 
@@ -35,7 +48,8 @@ div {
   border-radius: 5%/10%;
   justify-content: space-between;
   align-items: center;
-  background-color: aquamarine;
+  background-color: white;
+  border: 2px solid lemonchiffon;
 }
 
 .describe1 {

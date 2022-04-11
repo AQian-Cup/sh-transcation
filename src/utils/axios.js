@@ -2,9 +2,13 @@ import axios from "axios";
 
 // 创建 axios 实例
 const service = axios.create({
+  baseURL: "http://82.157.131.115:8080/prepare_ZS",
   // 是否跨站点访问控制请求
   withCredentials: false,
   timeout: 3000,
+  headers: {
+    Authorization: window.localStorage.getItem("token"),
+  },
   //请求数据转换
   transformRequest: [
     (data) => {
@@ -21,21 +25,6 @@ const service = axios.create({
     },
   ],
 });
-
-// 请求拦截器
-// service.interceptors.request.use(
-//   (config) => {
-//     // 让每个请求携带自定义 token
-//     config.headers["Authorization"] = "token";
-//     return config;
-//   },
-//   (error) => {
-//     // 错误抛到业务代码
-//     error.data = {};
-//     error.data.msg = "服务器异常，请联系管理员！";
-//     return Promise.resolve(error);
-//   }
-// );
 
 // 响应拦截器
 service.interceptors.response.use(

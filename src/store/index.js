@@ -1,21 +1,23 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import api from "../api"
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    username: "",
-    token: "",
+    account: "",
   },
   mutations: {
     USERLOGIN(state, data) {
-      state.username = data.username;
-      state.token = data.token;
+      state.account = data.Account;
+      window.localStorage.setItem("token", data.token);
     },
   },
   actions: {
-    userlogin({ commit }, data) {
+    async userlogin({ commit }, data) {
+      let res = await api.login.login(data)
+      data.token = res.data.Token
       commit("USERLOGIN", data);
     },
   },

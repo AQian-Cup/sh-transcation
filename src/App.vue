@@ -46,4 +46,7 @@ button {
   cursor: pointer;
   padding: 0;
 }
+.el-dialog__body{
+  text-align: left;
+}
 </style>

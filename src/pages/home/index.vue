@@ -24,6 +24,7 @@
           :content="item.Content"
           :time="item.Time"
           :author="item.Username"
+          :postId="item.Iid"
         ></show>
       </div>
     </div>
@@ -47,7 +48,15 @@ export default {
       res: {},
     };
   },
-  props: ["searchRes"],
+  watch:{
+    searchRes(newValue){
+      console.log(newValue)
+      if(newValue != ""){
+        this.res = newValue
+      }
+    }
+  },
+  props:["searchRes"],
   components: {
     navigationbar,
     show,
@@ -55,7 +64,9 @@ export default {
   },
   async mounted() {
     this.res = await this.$API.show.show();
-    console.log(this.res.data);
+    let req = "20001"
+    let res = await this.$API.image.image(req)
+    console.log(res)
   },
 };
 </script>

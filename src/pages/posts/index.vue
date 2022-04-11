@@ -1,13 +1,13 @@
 <template>
   <div class="all">
     <div class="show">
-      <div class="title">这是标题</div>
+      <div class="title">{{ title }}</div>
       <div class="image">
         <img src="./16212551.jpg" />
       </div>
       <div class="text">
-        <div class="describe">这是描述</div>
-        <div class="price">这是价格</div>
+        <div class="content">{{ content }}</div>
+        <div class="price">{{ price }}</div>
       </div>
       <div class="user">
         <el-avatar shape="square" :size="200" :src="url"></el-avatar>
@@ -32,12 +32,16 @@
 
 <script>
 export default {
-  name: "card",
+  name: "posts",
   data() {
     return {
       url: require("../../assets/user.png"),
       message: "123",
       commit: "",
+      title: "标题",
+      name: "商品名",
+      content: "内容",
+      price: "价格",
     };
   },
   methods: {
@@ -47,6 +51,12 @@ export default {
       };
       await this.$API.commit.commit(req);
     },
+  },
+  async mounted() {
+    let req = {
+      Iid: this.$router.query,
+    };
+    this.res = await this.$API.posts.posts(req);
   },
 };
 </script>

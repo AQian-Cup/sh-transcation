@@ -2,9 +2,16 @@
   <div class="user">
     <div class="content">
       <el-avatar shape="square" :size="200" :src="url"></el-avatar>
-      <div class="buttonGroup">
-        <button class="buttonLogin" @click="goLogin">登&nbsp;&nbsp;&nbsp;录</button>
-        <button class="buttonRegister" @click="goRegister">注&nbsp;&nbsp;&nbsp;册</button>
+      <div v-if="this.$store.state.account" class="buttonGroup">
+        {{ this.$store.state.account }}
+      </div>
+      <div v-if="!this.$store.state.account" class="buttonGroup">
+        <button class="buttonLogin" @click="goLogin">
+          登&nbsp;&nbsp;&nbsp;录
+        </button>
+        <button class="buttonRegister" @click="goRegister">
+          注&nbsp;&nbsp;&nbsp;册
+        </button>
       </div>
       <div class="message">
         <div>个人设置</div>
@@ -60,6 +67,7 @@ export default {
   display: flex;
   justify-content: center;
   width: 70%;
+  height: 40px;
   margin-top: 10%;
 }
 .buttonLogin {
@@ -102,7 +110,7 @@ export default {
   margin-top: 10%;
   width: 70%;
 }
-.message > div{
+.message > div {
   cursor: pointer;
   font-size: 20px;
   font-family: "微软雅黑";

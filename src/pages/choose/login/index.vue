@@ -39,11 +39,13 @@ export default {
   methods: {
     async onSubmit() {
       let req = {
-        Username: this.form.username,
+        Account: this.form.username,
         Password: this.form.password,
       };
-      await this.$API.login.login(req);
-      // this.$store.dispatch("userlogin")
+      await this.$store.dispatch("userlogin", req)
+      this.$router.push({
+        path:"/"
+      })
     },
   },
 };

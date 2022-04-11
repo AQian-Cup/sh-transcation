@@ -11,14 +11,26 @@
       />
       <button @click="goSearch" class="buttonSearch">搜&nbsp;&nbsp;索</button>
     </div>
-    <router-view></router-view>
-    <el-dialog title="你好" :visible.sync="dialogFormVisible">
-      <el-form :label-position="left" label-width="100px">
+    <router-view :searchRes="searchRes"></router-view>
+    <el-dialog
+      title="于此处撰写你的帖子"
+      :visible.sync="dialogFormVisible"
+      width="40%"
+    >
+      <el-form label-position="left" label-width="80px">
         <el-form-item label="帖子标题">
-          <el-input v-model="form.title"></el-input>
+          <el-input
+            v-model="form.title"
+            maxlength="15"
+            show-word-limit
+          ></el-input>
         </el-form-item>
         <el-form-item label="商品名称">
-          <el-input v-model="form.name"></el-input>
+          <el-input
+            v-model="form.name"
+            maxlength="15"
+            show-word-limit
+          ></el-input>
         </el-form-item>
         <el-form-item label="上传图片">
           <el-upload
@@ -29,12 +41,41 @@
           >
           </el-upload>
         </el-form-item>
+        <el-form-item label="需求展示">
+          <el-radio-group v-model="form.choice">
+            <el-radio label="买"></el-radio>
+            <el-radio label="卖"></el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="需求价格">
+          <el-input
+            v-model="form.price"
+            maxlength="5"
+            show-word-limit
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="帖子内容">
+          <el-input
+            type="textarea"
+            v-model="form.content"
+            :rows="4"
+            resize="none"
+            maxlength="200"
+            show-word-limit
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="关键字">
+          <el-input
+            v-model="form.keyword"
+            placeholder="最多三个，使用中文顿号分隔"
+            maxlength="15"
+            show-word-limit
+          ></el-input>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false"
-          >提 交</el-button
-        >
+        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submit">提 交</el-button>
       </div></el-dialog
     >
   </div>
@@ -48,10 +89,16 @@ export default {
   data() {
     return {
       input: "",
+      account:"",
       dialogFormVisible: false,
       form: {
         title: "",
+        name: "",
+        choice: "",
+        content: "",
+        keyword: "",
       },
+      searchRes:{}
     };
   },
   components: {
@@ -61,6 +108,24 @@ export default {
     reload() {
       this.dialogFormVisible = true;
     },
+    cancel() {
+      Object.keys(this.form).map((key) => (this.form[key] = ""));
+      this.dialogFormVisible = false;
+    },
+    async submit() {
+      let req = {
+        Price: this.form.price,
+        Name: this.form.name,
+        Choice: this.form.choice,
+        Account:this.account,
+        Title:this.form.title,
+        Content:this.form.content,
+        keyword:this.form.keyword
+      };
+      await this.$API.update.update(req)
+      Object.keys(this.form).map((key) => (this.form[key] = ""));
+      this.dialogFormVisible = false;
+    },
     async goSearch() {
       if (this.input == "") {
         this.$message("请输入搜索内容");
@@ -69,7 +134,8 @@ export default {
       let req = {
         Content: this.input,
       };
-      await this.$API.search.search(req);
+      this.input = ""
+      this.searchRes = await this.$API.search.search(req);
     },
   },
 };
@@ -89,7 +155,7 @@ export default {
   border: 1px solid rgba(128, 128, 128, 0.5);
   -webkit-appearance: none;
   outline: none;
-  margin-left: 278px;
+  margin-left: 274px;
   padding-left: 18px;
   width: 600px;
   height: 40px;

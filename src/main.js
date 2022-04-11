@@ -8,10 +8,10 @@ import router from './router'
 
 Vue.config.productionTip = false
 
-Vue.use(ElementUI)
+import api from "./api";
+Vue.prototype.$API = api;
 
-import api from './api'
-Vue.prototype.$API = api
+Vue.use(ElementUI)
 
 new Vue({
   render: h => h(App),

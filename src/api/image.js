@@ -1,9 +1,10 @@
 import { axios } from "../utils/axios";
 
-export function search(data){
+export function image(data){
   return axios({
-    url:"/search.do",
+    url:"/invimg2.do",
     method:"post",
+    responseType:"arraybuffer",
     data
   })
 }

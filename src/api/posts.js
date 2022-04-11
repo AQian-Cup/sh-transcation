@@ -1,8 +1,8 @@
 import { axios } from "../utils/axios";
 
-export function search(data){
+export function posts(){
   return axios({
-    url:"/search.do",
+    url:"",
     method:"post",
     data
   })
