@@ -1,6 +1,6 @@
 <template>
   <div class="navigation">
-    <div class="list">
+    <div class="list" @click="navGoSearch">
       <div class="listItem">家用电器</div>
       <div class="listItem">电脑数码</div>
       <div class="listItem">个护化妆</div>
@@ -16,6 +16,20 @@
 <script>
 export default {
   name: "navigationbar",
+  methods:{
+    async navGoSearch(e){
+      let req = {
+        Content:e.target.innerHTML
+      }
+      this.$router.push({
+        path:"/",
+        query:{
+          search:req.Content
+        }
+      })
+      this.$parent.$parent.searchRes = await this.$API.search.search(req)
+    }
+  }
 };
 </script>
 

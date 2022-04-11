@@ -34,12 +34,15 @@
         </el-form-item>
         <el-form-item label="上传图片">
           <el-upload
-            action=""
+            action="http://82.157.131.115:8080/prepare_ZS/invimg.do"
             list-type="picture-card"
             :on-preview="handlePictureCardPreview"
-            :on-remove="handleRemove"
           >
+            <i class="el-icon-plus"></i>
           </el-upload>
+          <el-dialog :visible.sync="dialogVisible">
+            <img width="100%" :src="dialogImageUrl" alt="" />
+          </el-dialog>
         </el-form-item>
         <el-form-item label="需求展示">
           <el-radio-group v-model="form.choice">
@@ -89,7 +92,9 @@ export default {
   data() {
     return {
       input: "",
-      account:"",
+      account: "",
+      dialogImageUrl:"",
+      dialogVisible:false,
       dialogFormVisible: false,
       form: {
         title: "",
@@ -98,15 +103,19 @@ export default {
         content: "",
         keyword: "",
       },
-      searchRes:{}
+      searchRes: {},
     };
   },
   components: {
     top,
   },
   methods: {
-    reload() {
+    async reload() {
       this.dialogFormVisible = true;
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
     },
     cancel() {
       Object.keys(this.form).map((key) => (this.form[key] = ""));
@@ -117,12 +126,12 @@ export default {
         Price: this.form.price,
         Name: this.form.name,
         Choice: this.form.choice,
-        Account:this.account,
-        Title:this.form.title,
-        Content:this.form.content,
-        keyword:this.form.keyword
+        Account: this.account,
+        Title: this.form.title,
+        Content: this.form.content,
+        keyword: this.form.keyword,
       };
-      await this.$API.update.update(req)
+      await this.$API.update.update(req);
       Object.keys(this.form).map((key) => (this.form[key] = ""));
       this.dialogFormVisible = false;
     },
@@ -134,7 +143,13 @@ export default {
       let req = {
         Content: this.input,
       };
-      this.input = ""
+      this.input = "";
+      this.$router.push({
+        path:"/",
+        query:{
+          search:req.Content
+        }
+      })
       this.searchRes = await this.$API.search.search(req);
     },
   },

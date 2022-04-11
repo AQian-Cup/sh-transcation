@@ -55,7 +55,11 @@ export default {
         Username: this.form.username,
         Password: this.form.password,
       };
-      await this.$API.register.register(req)
+      let res = await this.$API.register.register(req);
+      console.log(res);
+      this.$router.push({
+        path: "/",
+      });
     },
   },
 };

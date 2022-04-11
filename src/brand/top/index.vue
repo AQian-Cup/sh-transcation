@@ -4,7 +4,7 @@
       class="el-menu-demo"
       mode="horizontal"
     >
-      <el-menu-item>首页</el-menu-item>
+      <el-menu-item @click="goHome">首页</el-menu-item>
       <el-menu-item>公告</el-menu-item>
       <el-menu-item>活动</el-menu-item>
       <el-menu-item>关于我们</el-menu-item>
@@ -15,6 +15,14 @@
 <script>
 export default {
   name: "top",
+  methods:{
+    async goHome(){
+      this.$router.push({
+        path:"/"
+      })
+      this.$parent.searchRes = await this.$API.show.show() 
+    }
+  }
 };
 </script>
 

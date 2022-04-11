@@ -31,13 +31,30 @@ export default {
       });
     },
   },
-  async mounted() {},
+  async mounted() {
+    let req = { Iid: this.postId };
+    let res = await this.$API.imageRes.imageRes(req);
+    let data = res.data
+    this.img =
+      "data:image/png;base64," +
+      btoa(
+        new Uint8Array(data).reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          ""
+        )
+      );
+  },
 };
 </script>
 
 <style scoped>
 div {
   display: flex;
+}
+
+img{
+  width: 200px;
+  height: 200px;
 }
 
 .all {
@@ -53,7 +70,7 @@ div {
 }
 
 .describe1 {
-  width: 600px;
+  width: 400px;
   height: 200px;
   flex-direction: column;
   justify-content: space-around;

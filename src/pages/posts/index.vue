@@ -1,17 +1,17 @@
 <template>
   <div class="all">
     <div class="show">
-      <div class="title">{{ title }}</div>
+      <div class="title">{{ form.title }}</div>
       <div class="image">
         <img src="./16212551.jpg" />
       </div>
       <div class="text">
-        <div class="content">{{ content }}</div>
-        <div class="price">{{ price }}</div>
+        <div class="content">{{ form.content }}</div>
+        <div class="price">{{ form.price }}</div>
       </div>
       <div class="user">
         <el-avatar shape="square" :size="200" :src="url"></el-avatar>
-        <div class="message">{{ message }}</div>
+        <div class="message">{{ form.message }}</div>
         <button class="chat">与TA私聊</button>
       </div>
     </div>
@@ -38,10 +38,7 @@ export default {
       url: require("../../assets/user.png"),
       message: "123",
       commit: "",
-      title: "标题",
-      name: "商品名",
-      content: "内容",
-      price: "价格",
+      form: { title: "标题", name: "商品名", content: "内容", price: "价格" },
     };
   },
   methods: {

@@ -5,7 +5,7 @@ const service = axios.create({
   baseURL: "http://82.157.131.115:8080/prepare_ZS",
   // 是否跨站点访问控制请求
   withCredentials: false,
-  timeout: 3000,
+  timeout: 10000,
   headers: {
     Authorization: window.localStorage.getItem("token"),
   },

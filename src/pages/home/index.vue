@@ -48,15 +48,14 @@ export default {
       res: {},
     };
   },
-  watch:{
-    searchRes(newValue){
-      console.log(newValue)
-      if(newValue != ""){
-        this.res = newValue
+  watch: {
+    searchRes(newValue) {
+      if (newValue != "") {
+        this.res = newValue;
       }
-    }
+    },
   },
-  props:["searchRes"],
+  props: ["searchRes"],
   components: {
     navigationbar,
     show,
@@ -64,9 +63,6 @@ export default {
   },
   async mounted() {
     this.res = await this.$API.show.show();
-    let req = "20001"
-    let res = await this.$API.image.image(req)
-    console.log(res)
   },
 };
 </script>

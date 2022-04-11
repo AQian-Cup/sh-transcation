@@ -1,10 +1,9 @@
 import { axios } from "../utils/axios";
 
-export function image(data){
+export function imageReq(data){
   return axios({
-    url:"/invimg2.do",
+    url:"/invimg.do",
     method:"post",
-    responseType:"arraybuffer",
     data
   })
 }
