@@ -71,9 +71,6 @@ export default {
   margin-top: 10%;
 }
 .buttonLogin {
-  border: 0;
-  outline: none;
-  cursor: pointer;
   font-family: "homeUtils";
   font-size: 16px;
   color: white;
@@ -81,27 +78,15 @@ export default {
   height: 40px;
   background-image: linear-gradient(lightskyblue, skyblue);
   border-right: 1px solid white;
-  transition: font-size 0.1s ease-in;
 }
 .buttonRegister {
-  border: 0;
-  outline: none;
-  cursor: pointer;
   font-family: "homeUtils";
   font-size: 16px;
   color: white;
   width: 100px;
   height: 40px;
   background-image: linear-gradient(lightskyblue, skyblue);
-  border-collapse: collapse;
   border-left: 1px solid white;
-  transition: font-size 0.1s ease-in;
-}
-.buttonLogin:active {
-  font-size: 18px;
-}
-.buttonRegister:active {
-  font-size: 18px;
 }
 .message {
   display: flex;

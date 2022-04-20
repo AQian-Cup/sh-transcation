@@ -36,6 +36,7 @@
           <el-upload
             action="http://82.157.131.115:8080/prepare_ZS/invimg.do"
             list-type="picture-card"
+            :headers="token"
             :on-preview="handlePictureCardPreview"
           >
             <i class="el-icon-plus"></i>
@@ -46,8 +47,8 @@
         </el-form-item>
         <el-form-item label="需求展示">
           <el-radio-group v-model="form.choice">
-            <el-radio label="买"></el-radio>
-            <el-radio label="卖"></el-radio>
+            <el-radio label="0"></el-radio>
+            <el-radio label="1"></el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="需求价格">
@@ -92,9 +93,8 @@ export default {
   data() {
     return {
       input: "",
-      account: "",
-      dialogImageUrl:"",
-      dialogVisible:false,
+      dialogImageUrl: "",
+      dialogVisible: false,
       dialogFormVisible: false,
       form: {
         title: "",
@@ -103,8 +103,12 @@ export default {
         content: "",
         keyword: "",
       },
-      searchRes: {},
     };
+  },
+  computed: {
+    token() {
+      return { Authorization: window.localStorage.getItem("token") };
+    },
   },
   components: {
     top,
@@ -126,14 +130,22 @@ export default {
         Price: this.form.price,
         Name: this.form.name,
         Choice: this.form.choice,
-        Account: this.account,
         Title: this.form.title,
         Content: this.form.content,
-        keyword: this.form.keyword,
+        Keyword: this.form.keyword,
       };
-      await this.$API.update.update(req);
-      Object.keys(this.form).map((key) => (this.form[key] = ""));
-      this.dialogFormVisible = false;
+      let res = await this.$API.update.update(req);
+      if (res.data.Success == "True") {
+        Object.keys(this.form).map((key) => (this.form[key] = ""));
+        this.dialogFormVisible = false;
+        return this.$message({
+          message: "发布成功",
+          type: "success",
+        });
+      }
+      if (res.data.Success == "False") {
+        return this.$message.error("发布失败，请重试");
+      }
     },
     async goSearch() {
       if (this.input == "") {
@@ -145,12 +157,12 @@ export default {
       };
       this.input = "";
       this.$router.push({
-        path:"/",
-        query:{
-          search:req.Content
-        }
-      })
-      this.searchRes = await this.$API.search.search(req);
+        path: "/",
+        query: {
+          search: req.Content,
+        },
+      });
+      await this.$store.dispatch("search", req);
     },
   },
 };
@@ -167,10 +179,8 @@ export default {
   align-items: center;
 }
 .input {
-  border: 1px solid rgba(128, 128, 128, 0.5);
-  -webkit-appearance: none;
-  outline: none;
-  margin-left: 274px;
+  margin-left: calc((100% - 1382px) / 2 + 10px);
+  margin-right: 62px;
   padding-left: 18px;
   width: 600px;
   height: 40px;
@@ -179,7 +189,6 @@ export default {
 }
 .buttonSearch {
   border-radius: 26px;
-  margin-left: 56px;
   width: 120px;
   height: 40px;
   background-color: rgba(255, 217, 0);

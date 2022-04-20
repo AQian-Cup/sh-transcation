@@ -27,7 +27,7 @@ export default {
           search:req.Content
         }
       })
-      this.$parent.$parent.searchRes = await this.$API.search.search(req)
+      await this.$store.dispatch("search", req)
     }
   }
 };

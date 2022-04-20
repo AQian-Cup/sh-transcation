@@ -1,9 +1,9 @@
 <template>
   <div>
     <el-form label-position="left" :model="form" label-width="75px">
-      <el-form-item label="用户名">
+      <el-form-item label="账号">
         <el-input
-          placeholder="请输入用户名"
+          placeholder="请输入账号"
           v-model="form.username"
           prefix-icon="el-icon-user-solid"
         >
@@ -42,10 +42,18 @@ export default {
         Account: this.form.username,
         Password: this.form.password,
       };
-      await this.$store.dispatch("userlogin", req)
-      this.$router.push({
-        path:"/"
-      })
+      let res = await this.$store.dispatch("userlogin", req);
+      if (res) {
+        this.$message({
+          message: "登录成功",
+          type: "success",
+        });
+        this.$router.push({
+          path: "/",
+        });
+      } else {
+        this.$message.error("登录失败，请检查输入内容");
+      }
     },
   },
 };

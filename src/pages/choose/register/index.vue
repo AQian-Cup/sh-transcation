@@ -48,18 +48,34 @@ export default {
   },
   methods: {
     async onSubmit() {
+      if (this.form.password.length < 6) {
+        return this.$message({
+          message: "密码小于六位数",
+          type: "warning",
+        });
+      }
       if (this.form.password !== this.form.againpassword) {
-        return console.log("密码不一致");
+        return this.$message({
+          message: "密码不一致",
+          type: "warning",
+        });
       }
       let req = {
         Username: this.form.username,
         Password: this.form.password,
       };
       let res = await this.$API.register.register(req);
-      console.log(res);
-      this.$router.push({
-        path: "/",
-      });
+      if (res.data.Success == "True") {
+        this.$message({
+          message: `注册成功,你的账号是${res.data.Reason}`,
+          type: "success",
+        });
+        this.$router.push({
+          path: "/",
+        });
+      } else {
+        this.$message.error(res.data.Reason);
+      }
     },
   },
 };

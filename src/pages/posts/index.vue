@@ -3,7 +3,7 @@
     <div class="show">
       <div class="title">{{ form.title }}</div>
       <div class="image">
-        <img src="./16212551.jpg" />
+        <img :src="img" />
       </div>
       <div class="text">
         <div class="content">{{ form.content }}</div>
@@ -38,7 +38,16 @@ export default {
       url: require("../../assets/user.png"),
       message: "123",
       commit: "",
-      form: { title: "标题", name: "商品名", content: "内容", price: "价格" },
+      img: require("./16212551.jpg"),
+      form: {
+        title: "标题",
+        name: "商品名",
+        content: "内容",
+        price: "价格",
+        time: "时间",
+        choice: "需求",
+        username: "用户名",
+      },
     };
   },
   methods: {
@@ -48,18 +57,44 @@ export default {
       };
       await this.$API.commit.commit(req);
     },
+    async imgReq() {
+      let req = { Iid: this.$route.query.postId };
+      let res = await this.$API.imageRes.imageRes(req);
+      let data = res.data;
+      this.img =
+        "data:image/png;base64," +
+        btoa(
+          new Uint8Array(data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ""
+          )
+        );
+    },
+    async textReq() {
+      let req = {
+        Iid: this.$route.query.postId,
+      };
+      let res = await this.$API.posts.posts(req);
+      this.form.title = res.data.Title;
+      this.form.name = res.data.Name;
+      this.form.content = res.data.Content;
+      this.form.price = res.data.Price;
+      this.form.time = res.data.Time;
+      this.form.choice = res.data.Choice;
+      this.form.username = res.data.Username;
+    },
   },
   async mounted() {
-    let req = {
-      Iid: this.$router.query,
-    };
-    this.res = await this.$API.posts.posts(req);
+    this.textReq();
+    this.imgReq();
   },
 };
 </script>
 
 <style scoped>
 img {
+  display: block;
+  position: absolute;
   width: 100%;
   height: 100%;
 }
@@ -81,6 +116,7 @@ img {
   grid-row: 1 / 2;
 }
 .image {
+  position: relative;
   grid-column: 1/2;
   grid-row: 2/3;
 }

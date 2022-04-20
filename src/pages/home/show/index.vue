@@ -1,6 +1,6 @@
 <template>
   <div class="all" @click="jump">
-    <img :src="this.img" />
+    <img :src="img" />
     <div class="describe1">
       <div>{{ title }}</div>
       <div>{{ content }}</div>
@@ -34,7 +34,7 @@ export default {
   async mounted() {
     let req = { Iid: this.postId };
     let res = await this.$API.imageRes.imageRes(req);
-    let data = res.data
+    let data = res.data;
     this.img =
       "data:image/png;base64," +
       btoa(
@@ -52,7 +52,7 @@ div {
   display: flex;
 }
 
-img{
+img {
   width: 200px;
   height: 200px;
 }

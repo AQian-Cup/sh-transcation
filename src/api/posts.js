@@ -1,8 +1,8 @@
 import { axios } from "../utils/axios";
 
-export function posts(){
+export function posts(data){
   return axios({
-    url:"",
+    url:"/fullInv.do",
     method:"post",
     data
   })

@@ -45,8 +45,38 @@ button {
   outline: none;
   cursor: pointer;
   padding: 0;
+  position: relative;
 }
-.el-dialog__body{
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity .2s cubic-bezier(.645,.045,.355,1);
+  z-index: -1;
+  margin: -2px;
+  border-radius: inherit;
+  background-image: linear-gradient(135deg, yellow, rgb(220, 255, 24));
+}
+button:hover::before {
+  opacity: 1;
+}
+input {
+  -webkit-appearance: none;
+  outline: none;
+  border: 1px solid #dcdfe6;
+  transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+}
+input:hover{
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+input:active{
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.el-dialog__body {
   text-align: left;
 }
 </style>

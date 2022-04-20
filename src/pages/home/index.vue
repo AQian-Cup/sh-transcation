@@ -18,7 +18,7 @@
       </el-carousel>
       <div>
         <show
-          v-for="item in res.data"
+          v-for="item in this.$store.state.homePosts"
           :key="item.Iid"
           :title="item.Title"
           :content="item.Content"
@@ -45,24 +45,15 @@ export default {
       url2: require("./ad2.jpg"),
       url3: require("./ad3.jpg"),
       url4: require("./ad4.jpg"),
-      res: {},
     };
   },
-  watch: {
-    searchRes(newValue) {
-      if (newValue != "") {
-        this.res = newValue;
-      }
-    },
-  },
-  props: ["searchRes"],
   components: {
     navigationbar,
     show,
     user,
   },
   async mounted() {
-    this.res = await this.$API.show.show();
+    this.$store.dispatch("show")
   },
 };
 </script>
