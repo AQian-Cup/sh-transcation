@@ -6,12 +6,18 @@
         <img :src="img" />
       </div>
       <div class="text">
-        <div class="content">{{ form.content }}</div>
+        <div class="name">{{ form.name }}</div>
+        <div class="time">{{ form.time }}</div>
+        <div class="content">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ form.content }}
+        </div>
+        <div class="choice">{{ form.choice }}</div>
         <div class="price">{{ form.price }}</div>
       </div>
       <div class="user">
         <el-avatar shape="square" :size="200" :src="url"></el-avatar>
-        <div class="message">{{ form.message }}</div>
+        <div style="font-size:1.5em">{{ form.username }}</div>
+        <div class="message"></div>
         <button class="chat">与TA私聊</button>
       </div>
     </div>
@@ -43,10 +49,10 @@ export default {
         title: "标题",
         name: "商品名",
         content: "内容",
-        price: "价格",
-        time: "时间",
-        choice: "需求",
-        username: "用户名",
+        price: "999",
+        time: "2022-4-21",
+        choice: "卖",
+        username: "Cupkiller",
       },
     };
   },
@@ -85,13 +91,17 @@ export default {
     },
   },
   async mounted() {
-    this.textReq();
-    this.imgReq();
+    // this.textReq();
+    // this.imgReq();
   },
 };
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "choice&price";
+  src: url("../../assets/choice&price.ttf");
+}
 img {
   display: block;
   position: absolute;
@@ -104,6 +114,8 @@ img {
   grid-template-rows: 1fr 5fr;
   gap: 10px;
   margin: 0 15%;
+  background-color: #fff;
+  border: 2px solid lemonchiffon;
 }
 .title {
   display: flex;
@@ -121,29 +133,60 @@ img {
   grid-row: 2/3;
 }
 .text {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
   grid-column: 2/3;
   grid-row: 2/3;
+  text-align: left;
+  font-size: 1.2em;
+}
+.name {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.time {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-style: italic;
+  color: gray;
+}
+.content {
+  grid-row: 2/3;
+  grid-column: 1/3;
+}
+.choice {
+  display: flex;
+  align-items: center;
+  font-family: "choice&price";
+  font-size: 1.5em;
+}
+.price {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: "choice&price";
+  font-size: 1.5em;
 }
 .user {
   grid-column: 3/4;
   grid-row: 1/3;
-  background-color: white;
   border-radius: 5%;
-  border: 2px solid lemonchiffon;
 }
 .message {
   text-align: left;
   margin: 5%;
-  height: 30%;
+  height: 16%;
   border-radius: 5%;
   font-size: 20px;
 }
 .chat {
   border-radius: 5%/10%;
   width: 60%;
-  height: 15%;
+  height: 10%;
   font-size: 20px;
   color: white;
   background-color: aquamarine;
