@@ -55,7 +55,7 @@ export default {
   border-radius: 5%;
   margin-left: 8px;
   width: 285px;
-  height: 475px;
+  height: 471px;
   background-color: white;
 }
 .content {
@@ -103,6 +103,6 @@ export default {
   color: gray;
 }
 .message > div + div {
-  margin-top: 25%;
+  margin-top: 20%;
 }
 </style>

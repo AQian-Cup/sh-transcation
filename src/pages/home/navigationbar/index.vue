@@ -43,7 +43,7 @@ export default {
   border-radius: 5%;
   margin-right: 8px;
   width: 285px;
-  height: 475px;
+  height: 471px;
   overflow: auto;
   background-color: white;
 }

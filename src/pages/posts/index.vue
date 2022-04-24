@@ -194,17 +194,20 @@ img {
 .commentWriteHead {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 64px;
   height: 96px;
 }
 .commentWriteContent {
   width: 800px;
+  height: 100%;
   margin-right: 3%;
   border-radius: 1%/3%;
   font-family: "微软雅黑";
 }
 .commentWriteButton {
   width: 128px;
+  height: 94px;
   border-radius: 3%/6%;
   margin-left: 3%;
   font-size: 32px;

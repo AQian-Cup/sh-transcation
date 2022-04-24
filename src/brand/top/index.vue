@@ -6,7 +6,7 @@
       <el-menu-item @click="goActivity">活动</el-menu-item>
       <el-menu-item @click="aboutUs">关于我们</el-menu-item>
     </el-menu>
-    <el-dialog :title="title" :visible.sync="dialogCardVisible" width="40%">
+    <el-dialog title="标题" :visible.sync="dialogCardVisible" width="40%">
       <el-card shadow="hover">
         <div slot="header" class="insideTitle">标题</div>
         <div class="insideContent">内容</div>
@@ -57,7 +57,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .el-menu-demo {
   display: flex;
   justify-content: center;

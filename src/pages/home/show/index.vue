@@ -1,13 +1,13 @@
 <template>
   <div class="all" @click="jump">
-    <img :src="img" />
+    <img v-lazy="img" />
     <div class="describe1">
-      <div>{{ title }}</div>
-      <div>{{ content }}</div>
+      <div class="title">{{ title }}</div>
+      <div class="content">{{ content }}</div>
     </div>
     <div class="describe2">
-      <div>{{ time }}</div>
-      <div>{{ author }}</div>
+      <div class="author">{{ author }}</div>
+      <div class="time">{{ time }}</div>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
   methods: {
     jump() {
       this.$router.push({
-        path: "/posts",
+        path: "posts",
         query: {
           postId: this.postId,
         },
@@ -48,39 +48,61 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "choice&price";
+  src: url("../../../assets/choice&price.ttf");
+}
 div {
   display: flex;
 }
 
 img {
-  width: 200px;
-  height: 200px;
+  width: 400px;
+  height: 300px;
 }
 
 .all {
   cursor: pointer;
-  width: 800px;
-  height: 300px;
-  margin-top: 20px;
+  width: 450px;
+  height: 450px;
+  margin: 1%;
   border-radius: 5%/10%;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   background-color: white;
   border: 2px solid lemonchiffon;
 }
 
 .describe1 {
-  width: 400px;
-  height: 200px;
+  display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  align-items: center;
+  width: 400px;
+}
+
+.describe1 > div {
+  margin: 3% auto;
 }
 
 .describe2 {
-  width: 200px;
-  height: 200px;
-  flex-direction: column;
+  display: flex;
   justify-content: space-around;
-  align-items: center;
+  width: 400px;
+  margin-top: 5%;
+}
+
+.describe2 > div{
+  width: 80px;
+  height: 20px;
+}
+
+.title{
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.time {
+  color: gray;
+  font-family: "choice&price";
 }
 </style>

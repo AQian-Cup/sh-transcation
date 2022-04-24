@@ -2,7 +2,7 @@
   <div>
     <top></top>
     <div class="other">
-      <img src="./logo.png" class="logo" @click="reload" />
+      <img src="./logo.png" class="logo"/>
       <input
         v-model="input"
         placeholder="在此处输入搜索内容"
@@ -11,77 +11,7 @@
       />
       <button @click="goSearch" class="buttonSearch">搜&nbsp;&nbsp;索</button>
     </div>
-    <router-view :searchRes="searchRes"></router-view>
-    <el-dialog
-      title="于此处撰写你的帖子"
-      :visible.sync="dialogFormVisible"
-      width="40%"
-    >
-      <el-form label-position="left" label-width="80px">
-        <el-form-item label="帖子标题">
-          <el-input
-            v-model="form.title"
-            maxlength="15"
-            show-word-limit
-          ></el-input>
-        </el-form-item>
-        <el-form-item label="商品名称">
-          <el-input
-            v-model="form.name"
-            maxlength="15"
-            show-word-limit
-          ></el-input>
-        </el-form-item>
-        <el-form-item label="上传图片">
-          <el-upload
-            action="http://82.157.131.115:8080/prepare_ZS/invimg.do"
-            list-type="picture-card"
-            :headers="token"
-            :on-preview="handlePictureCardPreview"
-          >
-            <i class="el-icon-plus"></i>
-          </el-upload>
-          <el-dialog :visible.sync="dialogVisible">
-            <img width="100%" :src="dialogImageUrl" alt="" />
-          </el-dialog>
-        </el-form-item>
-        <el-form-item label="需求展示">
-          <el-radio-group v-model="form.choice">
-            <el-radio label="0"></el-radio>
-            <el-radio label="1"></el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="需求价格">
-          <el-input
-            v-model="form.price"
-            maxlength="5"
-            show-word-limit
-          ></el-input>
-        </el-form-item>
-        <el-form-item label="帖子内容">
-          <el-input
-            type="textarea"
-            v-model="form.content"
-            :rows="4"
-            resize="none"
-            maxlength="200"
-            show-word-limit
-          ></el-input>
-        </el-form-item>
-        <el-form-item label="关键字">
-          <el-input
-            v-model="form.keyword"
-            placeholder="最多三个，使用中文顿号分隔"
-            maxlength="15"
-            show-word-limit
-          ></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="cancel">取 消</el-button>
-        <el-button type="primary" @click="submit">提 交</el-button>
-      </div></el-dialog
-    >
+    <router-view></router-view>
   </div>
 </template>
 
@@ -93,60 +23,12 @@ export default {
   data() {
     return {
       input: "",
-      dialogImageUrl: "",
-      dialogVisible: false,
-      dialogFormVisible: false,
-      form: {
-        title: "",
-        name: "",
-        choice: "",
-        content: "",
-        keyword: "",
-      },
     };
-  },
-  computed: {
-    token() {
-      return { Authorization: window.localStorage.getItem("token") };
-    },
   },
   components: {
     top,
   },
   methods: {
-    async reload() {
-      this.dialogFormVisible = true;
-    },
-    handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.url;
-      this.dialogVisible = true;
-    },
-    cancel() {
-      Object.keys(this.form).map((key) => (this.form[key] = ""));
-      this.dialogFormVisible = false;
-    },
-    async submit() {
-      let req = {
-        Price: this.form.price,
-        Name: this.form.name,
-        Choice: this.form.choice,
-        Title: this.form.title,
-        Content: this.form.content,
-        Keyword: this.form.keyword,
-      };
-      let res = await this.$API.update.update(req);
-      if (res.data.Success == "True") {
-        Object.keys(this.form).map((key) => (this.form[key] = ""));
-        this.dialogFormVisible = false;
-        return this.$message({
-          message: "发布成功",
-          type: "success",
-        });
-      }
-      if (res.data.Success == "False") {
-        return this.$message.error("发布失败，请重试");
-      }
-    },
     async goSearch() {
       if (this.input == "") {
         this.$message("请输入搜索内容");
@@ -180,7 +62,7 @@ export default {
 }
 .input {
   margin-left: calc((100% - 1382px) / 2 + 10px);
-  margin-right: 62px;
+  margin-right: 60px;
   padding-left: 18px;
   width: 600px;
   height: 40px;

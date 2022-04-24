@@ -15,7 +15,7 @@ export default new Vuex.Store({
       window.localStorage.setItem("token", data.token);
     },
     SHOW(state, data) {
-      state.homePosts = data;
+      state.homePosts = data.slice(0, 3);
     },
     SEARCH(state, data) {
       state.homePosts = data;
