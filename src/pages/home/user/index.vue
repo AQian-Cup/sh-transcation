@@ -14,7 +14,7 @@
         </button>
       </div>
       <div class="message">
-        <div>个人设置</div>
+        <div @click="goPerson">个人设置</div>
         <div>我的消息</div>
         <div>我的帖子</div>
       </div>
@@ -39,6 +39,11 @@ export default {
     goRegister() {
       this.$router.push({
         path: "/choose/register",
+      });
+    },
+    goPerson() {
+      this.$router.push({
+        path: "/person",
       });
     },
   },

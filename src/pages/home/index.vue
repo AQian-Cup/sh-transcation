@@ -20,8 +20,8 @@
         :postId="item.Iid"
       ></show>
     </div>
-    <div class="floating">
-      <i class="el-icon-s-promotion" @click="posting"></i>
+    <div class="floating"  @click="posting">
+      <i class="el-icon-s-promotion"></i>
     </div>
     <el-dialog
       title="于此处撰写你的帖子"
@@ -32,13 +32,6 @@
         <el-form-item label="帖子标题">
           <el-input
             v-model="form.title"
-            maxlength="15"
-            show-word-limit
-          ></el-input>
-        </el-form-item>
-        <el-form-item label="商品名称">
-          <el-input
-            v-model="form.name"
             maxlength="15"
             show-word-limit
           ></el-input>
@@ -58,8 +51,8 @@
         </el-form-item>
         <el-form-item label="需求展示">
           <el-radio-group v-model="form.choice">
-            <el-radio label="0"></el-radio>
-            <el-radio label="1"></el-radio>
+            <el-radio label="0">买</el-radio>
+            <el-radio label="1">卖</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="需求价格">
@@ -110,7 +103,6 @@ export default {
       dialogFormVisible: false,
       form: {
         title: "",
-        name: "",
         choice: "",
         content: "",
         keyword: "",
@@ -143,7 +135,6 @@ export default {
     async submit() {
       let req = {
         Price: this.form.price,
-        Name: this.form.name,
         Choice: this.form.choice,
         Title: this.form.title,
         Content: this.form.content,
@@ -169,7 +160,7 @@ export default {
     },
   },
   async mounted() {
-    this.$store.dispatch("show");
+    await this.$store.dispatch("show");
   },
 };
 </script>
@@ -182,7 +173,6 @@ img {
 .main {
   display: flex;
   width: 100%;
-  height: 100%;
   flex-direction: column;
 }
 .menu {
@@ -204,6 +194,7 @@ img {
   position: fixed;
   width: 100px;
   height: 100px;
+  border-radius: 50%;
   top: calc((100% - 161px) / 2 + 40%);
   right: 1%;
   background-color: #fff;
@@ -211,11 +202,11 @@ img {
 .floating > i {
   display: flex;
   margin: auto;
-  font-size: 4em;
+  font-size: 3em;
   color: #606266;
   transition: color 0.5s ease-in;
 }
-.floating > i:hover{
-  color: #409EFF;
+.floating > i:hover {
+  color: #409eff;
 }
 </style>

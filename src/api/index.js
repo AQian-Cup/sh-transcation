@@ -5,7 +5,7 @@ import * as search from "./search";
 import * as update from "./update";
 import * as imageRes from "./imageRes";
 import * as imageReq from "./imageReq";
-import * as user from "./user";
+import * as person from "./person";
 import * as posts from "./posts";
 import * as activity from "./activity";
 import * as bulletin from "./bulletin";
@@ -18,7 +18,7 @@ export default {
   update,
   imageRes,
   imageReq,
-  user,
+  person,
   posts,
   activity,
   bulletin,

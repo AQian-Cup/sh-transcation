@@ -1,9 +1,9 @@
 import { axios } from "../utils/axios";
 
-export function user(data){
+export function person(data){
   return axios({
-    url:"addinvitaion.do",
-    method:"get",
+    url:"",
+    method:"post",
     data
   })
 }
