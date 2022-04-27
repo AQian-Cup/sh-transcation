@@ -3,7 +3,6 @@ import * as register from "./register";
 import * as show from "./show";
 import * as search from "./search";
 import * as update from "./update";
-import * as imageRes from "./imageRes";
 import * as imageReq from "./imageReq";
 import * as person from "./person";
 import * as posts from "./posts";
@@ -16,7 +15,6 @@ export default {
   show,
   search,
   update,
-  imageRes,
   imageReq,
   person,
   posts,

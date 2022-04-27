@@ -11,12 +11,11 @@
         <div class="content">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ form.content }}
         </div>
-        <div class="choice">{{ form.choice }}</div>
         <div class="price">{{ form.price }}</div>
       </div>
       <div class="user">
         <el-avatar shape="square" :size="200" :src="url"></el-avatar>
-        <div style="font-size:1.5em">{{ form.username }}</div>
+        <div style="font-size: 1.5em">{{ form.username }}</div>
         <div class="message"></div>
         <button class="chat">与TA私聊</button>
       </div>
@@ -33,10 +32,13 @@
         </button>
       </div>
     </div>
+    <comment></comment>
   </div>
 </template>
 
 <script>
+import comment from "./comment";
+
 export default {
   name: "posts",
   data() {
@@ -51,10 +53,12 @@ export default {
         content: "内容",
         price: "999",
         time: "2022-4-21",
-        choice: "卖",
         username: "Cupkiller",
       },
     };
+  },
+  components: {
+    comment,
   },
   methods: {
     async goCommit() {
@@ -63,22 +67,9 @@ export default {
       };
       await this.$API.commit.commit(req);
     },
-    async imgReq() {
-      let req = { Iid: this.$route.query.postId };
-      let res = await this.$API.imageRes.imageRes(req);
-      let data = res.data;
-      this.img =
-        "data:image/png;base64," +
-        btoa(
-          new Uint8Array(data).reduce(
-            (data, byte) => data + String.fromCharCode(byte),
-            ""
-          )
-        );
-    },
     async textReq() {
       let req = {
-        Iid: this.$route.query.postId,
+        Pid: this.$route.query.pId,
       };
       let res = await this.$API.posts.posts(req);
       this.form.title = res.data.Title;
@@ -86,27 +77,36 @@ export default {
       this.form.content = res.data.Content;
       this.form.price = res.data.Price;
       this.form.time = res.data.Time;
-      this.form.choice = res.data.Choice;
       this.form.username = res.data.Username;
+      this.img = res.data.Photo_name
     },
+    async commentReq(){
+      // let req = {
+      //   Pid: this.$route.query.pId,
+      // };
+    }
   },
   async mounted() {
-    // this.textReq();
-    // this.imgReq();
+    this.textReq();
   },
 };
 </script>
 
 <style scoped>
 @font-face {
-  font-family: "choice&price";
-  src: url("../../assets/choice&price.ttf");
+  font-family: "number";
+  src: url("../../assets/number.ttf");
 }
 img {
   display: block;
   position: absolute;
   width: 100%;
   height: 100%;
+}
+.all{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .show {
   display: grid;
@@ -158,17 +158,13 @@ img {
   grid-row: 2/3;
   grid-column: 1/3;
 }
-.choice {
-  display: flex;
-  align-items: center;
-  font-family: "choice&price";
-  font-size: 1.5em;
-}
 .price {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-family: "choice&price";
+  grid-row: 3/4;
+  grid-column: 3/4;
+  font-family: "number";
   font-size: 1.5em;
 }
 .user {
@@ -195,7 +191,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 64px;
+  margin-top: 32px;
   height: 96px;
 }
 .commentWriteContent {

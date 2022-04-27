@@ -2,7 +2,7 @@
   <div>
     <top></top>
     <div class="other">
-      <img src="./logo.png" class="logo"/>
+      <img src="./logo.png" class="logo" />
       <input
         v-model="input"
         placeholder="在此处输入搜索内容"
@@ -34,17 +34,14 @@ export default {
         this.$message("请输入搜索内容");
         return;
       }
-      let req = {
-        Content: this.input,
-      };
+      await this.$store.dispatch("search", this.input);
       this.input = "";
       this.$router.push({
-        path: "/",
+        path: "/search",
         query: {
-          search: req.Content,
+          search: this.input,
         },
       });
-      await this.$store.dispatch("search", req);
     },
   },
 };

@@ -12,15 +12,16 @@
     <div class="show">
       <show
         v-for="item in this.$store.state.homePosts"
-        :key="item.Iid"
+        :key="item.Pid"
         :title="item.Title"
         :content="item.Content"
         :time="item.Time"
         :author="item.Username"
-        :postId="item.Iid"
+        :pId="item.Pid"
+        :img="item.Photo_name"
       ></show>
     </div>
-    <div class="floating"  @click="posting">
+    <div class="floating" @click="posting">
       <i class="el-icon-s-promotion"></i>
     </div>
     <el-dialog
@@ -48,12 +49,6 @@
           <el-dialog :visible.sync="dialogVisible">
             <img width="100%" :src="dialogImageUrl" alt="" />
           </el-dialog>
-        </el-form-item>
-        <el-form-item label="需求展示">
-          <el-radio-group v-model="form.choice">
-            <el-radio label="0">买</el-radio>
-            <el-radio label="1">卖</el-radio>
-          </el-radio-group>
         </el-form-item>
         <el-form-item label="需求价格">
           <el-input
@@ -102,8 +97,8 @@ export default {
       dialogVisible: false,
       dialogFormVisible: false,
       form: {
+        price: "",
         title: "",
-        choice: "",
         content: "",
         keyword: "",
       },
@@ -135,7 +130,6 @@ export default {
     async submit() {
       let req = {
         Price: this.form.price,
-        Choice: this.form.choice,
         Title: this.form.title,
         Content: this.form.content,
         Keyword: this.form.keyword,

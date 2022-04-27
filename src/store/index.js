@@ -8,6 +8,8 @@ export default new Vuex.Store({
   state: {
     account: "",
     homePosts: [],
+    searchPosts: [],
+    replyUsername: "123",
   },
   mutations: {
     USERLOGIN(state, data) {
@@ -15,10 +17,10 @@ export default new Vuex.Store({
       window.localStorage.setItem("token", data.token);
     },
     SHOW(state, data) {
-      state.homePosts = data.slice(0, 3);
+      state.homePosts = data;
     },
     SEARCH(state, data) {
-      state.homePosts = data;
+      state.searchPosts = data;
     },
   },
   actions: {
@@ -40,6 +42,9 @@ export default new Vuex.Store({
     async search({ commit }, data) {
       let res = await api.search.search(data);
       commit("SEARCH", res.data);
+    },
+    reply({ commit }, data) {
+      commit("REPLY", data);
     },
   },
 });

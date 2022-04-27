@@ -1,7 +1,9 @@
 <template>
   <div class="person">
     <div class="main">
-      <el-avatar shape="square" :size="200" :src="url"></el-avatar>
+      <el-avatar shape="square" :size="200" :src="url">
+        <div class="uploadPhoto"></div>
+      </el-avatar>
       <div class="form">
         <el-form
           label-position="left"
@@ -52,27 +54,27 @@ export default {
   data() {
     return {
       isEditing: false,
-      username: "1",
-      password: "2",
+      username: "沉默",
+      password: "123456",
       gender: "0",
-      profile: "4",
+      profile: "没什么话",
     };
   },
   methods: {
     async editChange() {
       this.isEditing = !this.isEditing;
-      if(this.isEditing == false){
+      if (this.isEditing == false) {
         let req = {
-          Username:this.username,
-          Password:this.password,
-          Gender:this.gender,
-          Profile:this.profile
-        }
-        let res = await this.$API.person.person(req)
-        this.username = res.data.Username
-        this.password = res.data.Password
-        this.gender = res.data.Gender
-        this.profile = res.data.Profile
+          Username: this.username,
+          Password: this.password,
+          Gender: this.gender,
+          Profile: this.profile,
+        };
+        let res = await this.$API.person.person(req);
+        this.username = res.data.Username;
+        this.password = res.data.Password;
+        this.gender = res.data.Gender;
+        this.profile = res.data.Profile;
       }
     },
   },
@@ -95,7 +97,11 @@ export default {
   background: white;
 }
 .el-avatar {
+  position: relative;
   margin: 2%;
+}
+.uploadPhoto {
+  position: absolute;
 }
 .form {
   width: 80%;

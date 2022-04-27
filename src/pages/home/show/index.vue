@@ -1,6 +1,6 @@
 <template>
   <div class="all" @click="jump">
-    <img v-lazy="img" />
+    <img :src="img" />
     <div class="describe1">
       <div class="title">{{ title }}</div>
       <div class="content">{{ content }}</div>
@@ -15,42 +15,28 @@
 <script>
 export default {
   name: "show",
-  props: ["title", "content", "time", "author", "postId"],
+  props: ["title", "content", "time", "author", "pId", "img"],
   data() {
-    return {
-      img: require("./imagetest.png"),
-    };
+    return {};
   },
   methods: {
     jump() {
       this.$router.push({
         path: "posts",
         query: {
-          postId: this.postId,
+          pId: this.pId,
         },
       });
     },
   },
-  async mounted() {
-    let req = { Iid: this.postId };
-    let res = await this.$API.imageRes.imageRes(req);
-    let data = res.data;
-    this.img =
-      "data:image/png;base64," +
-      btoa(
-        new Uint8Array(data).reduce(
-          (data, byte) => data + String.fromCharCode(byte),
-          ""
-        )
-      );
-  },
+  async mounted() {},
 };
 </script>
 
 <style scoped>
 @font-face {
-  font-family: "choice&price";
-  src: url("../../../assets/choice&price.ttf");
+  font-family: "number";
+  src: url("../../../assets/number.ttf");
 }
 div {
   display: flex;
@@ -91,18 +77,18 @@ img {
   margin-top: 5%;
 }
 
-.describe2 > div{
+.describe2 > div {
   width: 80px;
   height: 20px;
 }
 
-.title{
+.title {
   font-weight: bold;
   font-size: 1.5em;
 }
 
 .time {
   color: gray;
-  font-family: "choice&price";
+  font-family: "number";
 }
 </style>

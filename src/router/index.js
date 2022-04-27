@@ -7,6 +7,7 @@ import login from "../pages/choose/login";
 import register from "../pages/choose/register";
 import posts from "../pages/posts";
 import person from "../pages/person";
+import search from "../pages/search"
 
 Vue.use(Router);
 
@@ -27,6 +28,10 @@ const routes = [
         path: "person",
         component: person,
       },
+      {
+        path:"search",
+        component:search
+      }
     ],
   },
   {
