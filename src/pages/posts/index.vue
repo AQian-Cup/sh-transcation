@@ -6,7 +6,6 @@
         <img :src="img" />
       </div>
       <div class="text">
-        <div class="name">{{ form.name }}</div>
         <div class="time">{{ form.time }}</div>
         <div class="content">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ form.content }}
@@ -49,7 +48,6 @@ export default {
       img: require("./16212551.jpg"),
       form: {
         title: "标题",
-        name: "商品名",
         content: "内容",
         price: "999",
         time: "2022-4-21",
@@ -73,7 +71,6 @@ export default {
       };
       let res = await this.$API.posts.posts(req);
       this.form.title = res.data.Title;
-      this.form.name = res.data.Name;
       this.form.content = res.data.Content;
       this.form.price = res.data.Price;
       this.form.time = res.data.Time;
@@ -140,12 +137,6 @@ img {
   grid-row: 2/3;
   text-align: left;
   font-size: 1.2em;
-}
-.name {
-  display: flex;
-  align-items: center;
-  font-size: 1.5em;
-  font-weight: bold;
 }
 .time {
   display: flex;

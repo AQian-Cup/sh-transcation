@@ -1,8 +1,8 @@
 import { axios } from "../utils/axios";
 
-export function posts(data){
+export function releaseImg(data){
   return axios({
-    url: "/post.do",
+    url: "/releaseImg.do",
     method: "post",
     data,
   });

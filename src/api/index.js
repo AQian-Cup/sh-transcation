@@ -2,8 +2,8 @@ import * as login from "./login";
 import * as register from "./register";
 import * as show from "./show";
 import * as search from "./search";
-import * as update from "./update";
-import * as imageReq from "./imageReq";
+import * as release from "./release";
+import * as releaseImg from "./releaseImg";
 import * as person from "./person";
 import * as posts from "./posts";
 import * as activity from "./activity";
@@ -14,8 +14,8 @@ export default {
   register,
   show,
   search,
-  update,
-  imageReq,
+  release,
+  releaseImg,
   person,
   posts,
   activity,

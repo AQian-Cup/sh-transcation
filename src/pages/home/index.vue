@@ -134,7 +134,7 @@ export default {
         Content: this.form.content,
         Keyword: this.form.keyword,
       };
-      let res = await this.$API.update.update(req);
+      let res = await this.$API.release.release(req);
       if (res.data.Success == "True") {
         Object.keys(this.form).map((key) => (this.form[key] = ""));
         this.dialogFormVisible = false;
