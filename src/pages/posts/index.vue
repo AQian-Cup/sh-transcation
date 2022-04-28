@@ -10,10 +10,10 @@
         <div class="content">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ form.content }}
         </div>
-        <div class="price">{{ form.price }}</div>
+        <div class="price">价格：{{ form.price }}</div>
       </div>
       <div class="user">
-        <el-avatar shape="square" :size="200" :src="url"></el-avatar>
+        <el-avatar shape="square" fit="fill" :size="200" :src="url"></el-avatar>
         <div style="font-size: 1.5em">{{ form.username }}</div>
         <div class="message"></div>
         <button class="chat">与TA私聊</button>
@@ -25,13 +25,21 @@
           placeholder="在此输入你的评论"
           class="commentWriteContent"
           v-model="commit"
+          @keydown.enter="goCommit"
         />
         <button @click="goCommit" class="commentWriteButton">
           评&nbsp;&nbsp;论
         </button>
       </div>
     </div>
-    <comment></comment>
+    <comment
+      v-for="item in commentAll"
+      :key="item.Cid"
+      :account="item.Account"
+      :username="item.Username"
+      :content="item.Content"
+      :time="item.Time"
+    ></comment>
   </div>
 </template>
 
@@ -47,23 +55,38 @@ export default {
       commit: "",
       img: require("./16212551.jpg"),
       form: {
-        title: "标题",
-        content: "内容",
-        price: "999",
-        time: "2022-4-21",
-        username: "Cupkiller",
+        title: "",
+        content: "",
+        price: "",
+        time: "",
+        username: "",
       },
+      commentAll: [],
     };
   },
   components: {
     comment,
   },
+  computed: {
+    replyUser() {
+      return this.$store.state.replyUser;
+    },
+  },
+  watch: {
+    replyUser() {
+        this.commit = "回复" + this.replyUser + "：" + this.commit;
+        this.$store.dispatch("clear");
+    },
+  },
   methods: {
     async goCommit() {
       let req = {
-        Commit: this.commit,
+        Pid: this.$route.query.pId,
+        Content: this.commit,
       };
-      await this.$API.commit.commit(req);
+      await this.$API.posts.comment(req);
+      this.commentReq();
+      this.commit = ""
     },
     async textReq() {
       let req = {
@@ -75,24 +98,27 @@ export default {
       this.form.price = res.data.Price;
       this.form.time = res.data.Time;
       this.form.username = res.data.Username;
-      this.img = res.data.Photo_name
+      this.img = res.data.Photo_name;
     },
-    async commentReq(){
-      // let req = {
-      //   Pid: this.$route.query.pId,
-      // };
-    }
+    async commentReq() {
+      let req = {
+        Pid: this.$route.query.pId,
+      };
+      let res = await this.$API.posts.commentGet(req);
+      this.commentAll = res.data;
+    },
   },
-  async mounted() {
+  mounted() {
     this.textReq();
+    this.commentReq();
   },
 };
 </script>
 
 <style scoped>
 @font-face {
-  font-family: "number";
-  src: url("../../assets/number.ttf");
+  font-family: "price";
+  src: url("../../assets/number.ttf"), url("../../assets/price_CN.ttf");
 }
 img {
   display: block;
@@ -100,7 +126,7 @@ img {
   width: 100%;
   height: 100%;
 }
-.all{
+.all {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -142,6 +168,7 @@ img {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  grid-column: 2/3;
   font-style: italic;
   color: gray;
 }
@@ -154,8 +181,8 @@ img {
   justify-content: flex-end;
   align-items: center;
   grid-row: 3/4;
-  grid-column: 3/4;
-  font-family: "number";
+  grid-column: 2/3;
+  font-family: "price";
   font-size: 1.5em;
 }
 .user {
@@ -186,11 +213,12 @@ img {
   height: 96px;
 }
 .commentWriteContent {
-  width: 800px;
+  width: 1000px;
   height: 100%;
   margin-right: 3%;
   border-radius: 1%/3%;
   font-family: "微软雅黑";
+  padding: 0;
 }
 .commentWriteButton {
   width: 128px;

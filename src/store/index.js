@@ -7,14 +7,15 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     account: "",
+    username: "",
+    userPhoto: "",
     homePosts: [],
     searchPosts: [],
-    replyUsername: "123",
+    replyUser: "",
   },
   mutations: {
     USERLOGIN(state, data) {
-      state.account = data.Account;
-      window.localStorage.setItem("token", data.token);
+      window.localStorage.setItem("token", data.Token);
     },
     SHOW(state, data) {
       state.homePosts = data;
@@ -22,16 +23,31 @@ export default new Vuex.Store({
     SEARCH(state, data) {
       state.searchPosts = data;
     },
+    VERIFY(state, data) {
+      if (data) {
+        state.account = data.Account;
+        state.username = data.Username;
+        state.userPhoto = data.Photo_name
+      }else{
+        state.account = "";
+        state.username = "";
+        state.userPhoto = "";
+      }
+    },
+    REPLY(state,data){
+      state.replyUser = data
+    },
+    CLEAR(state){
+      state.replyUser = ""
+    }
   },
   actions: {
     async userlogin({ commit }, data) {
-      let res = await api.login.login(data);
-      if (res.data.Mark == "登录成功") {
-        data.token = res.data.Token;
-        commit("USERLOGIN", data);
+      let res = await api.choose.login(data);
+      if (res.data.Account) {
+        commit("USERLOGIN", res.data);
         return true;
-      }
-      if (res.data.Mark == "密码错误" || res.data.Mark == "账号不存在") {
+      } else {
         return false;
       }
     },
@@ -43,8 +59,15 @@ export default new Vuex.Store({
       let res = await api.search.search(data);
       commit("SEARCH", res.data);
     },
-    reply({ commit }, data) {
-      commit("REPLY", data);
+    async verify({ commit }) {
+      let res = await api.person.verify();
+      commit("VERIFY", res.data);
     },
+    reply({commit},data){
+      commit("REPLY",data)
+    },
+    clear({commit}){
+      commit("CLEAR")
+    }
   },
 });

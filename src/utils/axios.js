@@ -2,7 +2,7 @@ import axios from "axios";
 
 // 创建 axios 实例
 const service = axios.create({
-  baseURL: "http://82.157.131.115:8080/prepare_ZS",
+  baseURL: "http://82.157.131.115:8080/zai_zhuan_shou",
   // 是否跨站点访问控制请求
   withCredentials: false,
   timeout: 10000,

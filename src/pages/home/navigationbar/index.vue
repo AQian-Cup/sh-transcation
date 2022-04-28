@@ -22,7 +22,7 @@ export default {
         Content:e.target.innerHTML
       }
       this.$router.push({
-        path:"/",
+        path:"/search",
         query:{
           search:req.Content
         }

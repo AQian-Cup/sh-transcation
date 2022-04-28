@@ -36,6 +36,7 @@ body {
   height: 100%;
   border: hidden;
   overflow: auto;
+  word-break: break-all;
 }
 textarea {
   resize: none;
@@ -94,5 +95,8 @@ textarea:focus {
 }
 .el-dialog__body {
   text-align: left;
+}
+.el-avatar > img {
+  width: 100%;
 }
 </style>

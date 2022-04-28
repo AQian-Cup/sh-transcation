@@ -51,6 +51,7 @@ export default {
         this.$router.push({
           path: "/",
         });
+        location.reload()
       } else {
         this.$message.error("登录失败，请检查输入内容");
       }

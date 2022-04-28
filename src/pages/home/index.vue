@@ -39,7 +39,7 @@
         </el-form-item>
         <el-form-item label="上传图片">
           <el-upload
-            action="http://82.157.131.115:8080/prepare_ZS/invimg.do"
+            action="http://82.157.131.115:8080/zai_zhuan_shou/releaseImg.do"
             list-type="picture-card"
             :headers="token"
             :on-preview="handlePictureCardPreview"
@@ -135,7 +135,7 @@ export default {
         Keyword: this.form.keyword,
       };
       let res = await this.$API.release.release(req);
-      if (res.data.Success == "True") {
+      if (res.data.Result == "Success") {
         Object.keys(this.form).map((key) => (this.form[key] = ""));
         this.dialogFormVisible = false;
         return this.$message({
@@ -143,7 +143,7 @@ export default {
           type: "success",
         });
       }
-      if (res.data.Success == "False") {
+      if (res.data.Result == "No token") {
         return this.$message.error("发布失败，请重试");
       }
     },
@@ -155,6 +155,7 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch("show");
+    await this.$store.dispatch("verify")
   },
 };
 </script>

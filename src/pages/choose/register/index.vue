@@ -64,17 +64,17 @@ export default {
         Username: this.form.username,
         Password: this.form.password,
       };
-      let res = await this.$API.register.register(req);
-      if (res.data.Success == "True") {
+      let res = await this.$API.choose.register(req);
+      if (res.data.Account) {
         this.$message({
-          message: `注册成功,你的账号是${res.data.Reason}`,
+          message: `注册成功,你的账号是${res.data.Account}`,
           type: "success",
         });
         this.$router.push({
           path: "/",
         });
       } else {
-        this.$message.error(res.data.Reason);
+        this.$message.error(res.data.Result);
       }
     },
   },

@@ -11,7 +11,7 @@
       />
       <button @click="goSearch" class="buttonSearch">搜&nbsp;&nbsp;索</button>
     </div>
-    <router-view></router-view>
+    <router-view :key="$route.fullPath"></router-view>
   </div>
 </template>
 
@@ -29,19 +29,18 @@ export default {
     top,
   },
   methods: {
-    async goSearch() {
+    goSearch() {
       if (this.input == "") {
         this.$message("请输入搜索内容");
         return;
       }
-      await this.$store.dispatch("search", this.input);
-      this.input = "";
       this.$router.push({
         path: "/search",
         query: {
           search: this.input,
         },
       });
+      this.input = "";
     },
   },
 };

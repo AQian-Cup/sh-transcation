@@ -1,13 +1,13 @@
 <template>
-  <div class="all" @click="jump">
+  <div class="show" @click="jump">
     <img :src="img" />
     <div class="describe1">
-      <div class="title">{{ title }}</div>
-      <div class="content">{{ content }}</div>
+      <div class="title">{{ form.title }}</div>
+      <div class="content">{{ form.content }}</div>
     </div>
     <div class="describe2">
-      <div class="author">{{ author }}</div>
-      <div class="time">{{ time }}</div>
+      <div class="author">{{ form.author }}</div>
+      <div class="time">{{ form.time }}</div>
     </div>
   </div>
 </template>
@@ -17,7 +17,14 @@ export default {
   name: "show",
   props: ["title", "content", "time", "author", "pId", "img"],
   data() {
-    return {};
+    return {
+      form:{
+        title:this.title,
+        content:this.content,
+        time:this.time,
+        author:this.author,
+      }
+    };
   },
   methods: {
     jump() {
@@ -29,7 +36,6 @@ export default {
       });
     },
   },
-  async mounted() {},
 };
 </script>
 
@@ -47,7 +53,7 @@ img {
   height: 300px;
 }
 
-.all {
+.show {
   cursor: pointer;
   width: 450px;
   height: 450px;

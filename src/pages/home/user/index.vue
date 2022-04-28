@@ -1,11 +1,17 @@
 <template>
   <div class="user">
     <div class="content">
-      <el-avatar shape="square" :size="200" :src="url"></el-avatar>
-      <div v-if="this.$store.state.account" class="buttonGroup">
-        {{ this.$store.state.account }}
+      <el-avatar
+        shape="square"
+        :size="200"
+        fit="fill"
+        :src="this.$store.state.userPhoto ? this.$store.state.userPhoto : url"
+      >
+      </el-avatar>
+      <div v-if="this.$store.state.username" class="buttonGroup">
+        {{ this.$store.state.username }}
       </div>
-      <div v-if="!this.$store.state.account" class="buttonGroup">
+      <div v-if="!this.$store.state.username" class="buttonGroup">
         <button class="buttonLogin" @click="goLogin">
           登&nbsp;&nbsp;&nbsp;录
         </button>
@@ -16,7 +22,7 @@
       <div class="message">
         <div @click="goPerson">个人设置</div>
         <div>我的消息</div>
-        <div>我的帖子</div>
+        <div @click="goLogout">退出</div>
       </div>
     </div>
   </div>
@@ -46,6 +52,10 @@ export default {
         path: "/person",
       });
     },
+    goLogout() {
+      window.localStorage.removeItem("token");
+      location.reload();
+    },
   },
 };
 </script>
@@ -74,6 +84,7 @@ export default {
   width: 70%;
   height: 40px;
   margin-top: 10%;
+  font-size: 24px;
 }
 .buttonLogin {
   font-family: "homeUtils";
