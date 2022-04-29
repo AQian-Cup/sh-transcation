@@ -51,8 +51,9 @@ export default {
   data() {
     return {
       url: require("../../assets/user.png"),
-      message: "123",
+      Account: "",
       commit: "",
+      toAccount: "",
       img: require("./16212551.jpg"),
       form: {
         title: "",
@@ -74,8 +75,13 @@ export default {
   },
   watch: {
     replyUser() {
-        this.commit = "回复" + this.replyUser + "：" + this.commit;
-        this.$store.dispatch("clear");
+      this.commit = "@" + this.replyUser + "：" + this.commit;
+      this.toAccount = this.replyUser;
+    },
+    commit() {
+      if (this.commit == "") {
+        this.toAccount = this.Account;
+      }
     },
   },
   methods: {
@@ -83,10 +89,11 @@ export default {
       let req = {
         Pid: this.$route.query.pId,
         Content: this.commit,
+        ToAccount: this.toAccount,
       };
       await this.$API.posts.comment(req);
       this.commentReq();
-      this.commit = ""
+      this.commit = "";
     },
     async textReq() {
       let req = {
@@ -99,13 +106,19 @@ export default {
       this.form.time = res.data.Time;
       this.form.username = res.data.Username;
       this.img = res.data.Photo_name;
+      this.Account = res.data.Account;
+      this.toAccount = this.Account;
     },
     async commentReq() {
       let req = {
         Pid: this.$route.query.pId,
       };
       let res = await this.$API.posts.commentGet(req);
-      this.commentAll = res.data;
+      if (!res.data.Result) {
+        this.commentAll = res.data;
+      } else {
+        this.$message.error(res.data.Result);
+      }
     },
   },
   mounted() {

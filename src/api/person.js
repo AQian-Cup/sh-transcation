@@ -9,7 +9,7 @@ export function verify() {
 
 export function getting() {
   return axios({
-    url: "",
+    url: "gettingInf.do",
     method: "post",
   });
 }

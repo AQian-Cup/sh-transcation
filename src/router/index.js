@@ -8,6 +8,7 @@ import register from "../pages/choose/register";
 import posts from "../pages/posts";
 import person from "../pages/person";
 import search from "../pages/search"
+import message from "../pages/message"
 
 Vue.use(Router);
 
@@ -31,6 +32,10 @@ const routes = [
       {
         path:"search",
         component:search
+      },
+      {
+        path:"message",
+        component:message
       }
     ],
   },

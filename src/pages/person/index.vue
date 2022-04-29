@@ -1,9 +1,22 @@
 <template>
   <div class="person">
     <div class="main">
-      <el-avatar shape="square" :size="200" fit="fill" :src="this.$store.state.userPhoto ? this.$store.state.userPhoto : url">
-        <div class="uploadPhoto"></div>
-      </el-avatar>
+      <el-upload
+        class="avatar-uploader"
+        action="http://82.157.131.115:8080/zai_zhuan_shou/settingImg.do"
+        :show-file-list="false"
+        :headers="token"
+        :before-upload="restrict"
+        :on-success="photoReload"
+      >
+        <el-avatar
+          shape="square"
+          :size="200"
+          fit="fill"
+          :src="this.$store.state.userPhoto ? this.$store.state.userPhoto : url"
+        >
+        </el-avatar>
+      </el-upload>
       <div class="form">
         <el-form
           label-position="left"
@@ -54,11 +67,18 @@ export default {
   data() {
     return {
       isEditing: false,
-      username: "沉默",
+      url: require("../../assets/user.png"),
+      username: "",
       password: "",
-      gender: "男",
-      profile: "没什么话",
+      credit: "",
+      gender: "",
+      profile: "",
     };
+  },
+  computed: {
+    token() {
+      return { Authorization: window.localStorage.getItem("token") };
+    },
   },
   methods: {
     async editChange() {
@@ -70,16 +90,39 @@ export default {
           Gender: this.gender,
           Profile: this.profile,
         };
-        let res = await this.$API.person.setting(req);
+        await this.$API.person.setting(req);
+        let res = await this.$API.person.getting();
         this.username = res.data.Username;
-        this.password = "";
+        this.password = res.data.Password;
         this.gender = res.data.Gender;
         this.profile = res.data.Profile;
+        if (res.data.Result.length > 40) {
+          window.localStorage.setItem("token", res.data.Result);
+        } else {
+          this.$message.error(res.data.Result);
+        }
       }
     },
+    restrict() {
+      if (this.isEditing == false) {
+        this.$message({
+          message: "请点击右下角按钮",
+          type: "warning",
+        });
+        return false;
+      }
+    },
+    photoReload(){
+      this.$store.dispatch("verify")
+    }
   },
-  mounted() {
-    this.$API.person.getting();
+  async mounted() {
+    let res = await this.$API.person.getting();
+    await this.$API.person.getting();
+    this.username = res.data.Username;
+    this.password = res.data.Password;
+    this.gender = res.data.Gender;
+    this.profile = res.data.Profile;
   },
 };
 </script>

@@ -5,6 +5,7 @@ import * as release from "./release";
 import * as releaseImg from "./releaseImg";
 import * as person from "./person";
 import * as posts from "./posts";
+import * as message from "./message"
 
 export default {
   choose,
@@ -14,4 +15,5 @@ export default {
   releaseImg,
   person,
   posts,
+  message
 };

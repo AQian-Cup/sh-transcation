@@ -21,7 +21,7 @@
       </div>
       <div class="message">
         <div @click="goPerson">个人设置</div>
-        <div>我的消息</div>
+        <div @click="goMessage">我的消息</div>
         <div @click="goLogout">退出</div>
       </div>
     </div>
@@ -50,6 +50,11 @@ export default {
     goPerson() {
       this.$router.push({
         path: "/person",
+      });
+    },
+    goMessage() {
+      this.$router.push({
+        path: "/message",
       });
     },
     goLogout() {

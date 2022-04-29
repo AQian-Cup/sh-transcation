@@ -13,9 +13,9 @@
           :img="item.Photo_name"
         ></show>
       </div>
-      <div class="floating">
-        <i class="el-icon-arrow-up"></i>
-      </div>
+    </div>
+    <div class="floating" @click="backTop">
+      <i class="el-icon-arrow-up"></i>
     </div>
   </div>
 </template>
@@ -30,6 +30,16 @@ export default {
   },
   components: {
     show,
+  },
+  methods: {
+    backTop() {
+      this.$nextTick(() => {
+        document.querySelector(".main").scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    },
   },
   async mounted() {
     let req = {

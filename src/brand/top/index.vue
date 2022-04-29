@@ -28,7 +28,7 @@ export default {
       dialogCardVisible: false,
       dialogVisible: false,
       goContent: [],
-      aboutContent: "你好,我们是来自于兰州理工大学的参赛团队--再转手。",
+      aboutContent: "你好,我们是再转手团队。",
     };
   },
   methods: {
@@ -36,19 +36,14 @@ export default {
       this.$router.push({
         path: "/",
       });
-      await this.$store.dispatch("show");
     },
-    async goBulletin() {
+    goBulletin() {
       this.title="公告"
       this.dialogCardVisible = true;
-      let res = await this.$API.bulletin.bulletin();
-      this.goContent = res.data;
     },
-    async goActivity() {
+    goActivity() {
       this.title="活动"
       this.dialogCardVisible = true;
-      let res = await this.$API.activity.activity();
-      this.goContent = res.data;
     },
     aboutUs() {
       this.dialogVisible = true;

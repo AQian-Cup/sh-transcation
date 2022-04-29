@@ -70,7 +70,7 @@
         <el-form-item label="关键字">
           <el-input
             v-model="form.keyword"
-            placeholder="最多三个，使用中文顿号分隔"
+            placeholder="最多三个，使用空格分隔"
             maxlength="15"
             show-word-limit
           ></el-input>

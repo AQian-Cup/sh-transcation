@@ -37,9 +37,6 @@ export default new Vuex.Store({
     REPLY(state,data){
       state.replyUser = data
     },
-    CLEAR(state){
-      state.replyUser = ""
-    }
   },
   actions: {
     async userlogin({ commit }, data) {
@@ -66,8 +63,5 @@ export default new Vuex.Store({
     reply({commit},data){
       commit("REPLY",data)
     },
-    clear({commit}){
-      commit("CLEAR")
-    }
   },
 });

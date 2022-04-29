@@ -1,31 +1,25 @@
 <template>
-  <div class="comment">
+  <div class="reply">
     <div class="username">{{ username }}说：</div>
     <div class="content">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ content }}
     </div>
     <div class="time">{{ time }}</div>
-    <div class="reply" @click="goReply">回复</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "commet",
-  props: ["account", "username", "content","time"],
-  data() {
-    return {};
-  },
+  name: "reply",
+  props: ["username", "content", "time"],
   methods: {
-    goReply() {
-      this.$store.dispatch("reply", this.username);
-    },
+    goPost() {},
   },
 };
 </script>
 
 <style scoped>
-.comment {
+.reply {
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   grid-template-rows: 1fr 1fr;
