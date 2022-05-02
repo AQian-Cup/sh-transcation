@@ -86,6 +86,9 @@ export default {
   },
   methods: {
     async goCommit() {
+      if (!this.commit) {
+        return this.$message.error("内容不能为空");
+      }
       let req = {
         Pid: this.$route.query.pId,
         Content: this.commit,
@@ -106,6 +109,7 @@ export default {
       this.form.time = res.data.Time;
       this.form.username = res.data.Username;
       this.img = res.data.Photo_name;
+      this.url = res.data.Photo_name_user;
       this.Account = res.data.Account;
       this.toAccount = this.Account;
     },

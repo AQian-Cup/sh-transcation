@@ -134,6 +134,9 @@ export default {
         Content: this.form.content,
         Keyword: this.form.keyword,
       };
+      if (req.Content == "") {
+        return this.$message.error("发布失败，请重试");
+      }
       let res = await this.$API.release.release(req);
       if (res.data.Result == "Success") {
         Object.keys(this.form).map((key) => (this.form[key] = ""));
@@ -155,7 +158,7 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch("show");
-    await this.$store.dispatch("verify")
+    await this.$store.dispatch("verify");
   },
 };
 </script>

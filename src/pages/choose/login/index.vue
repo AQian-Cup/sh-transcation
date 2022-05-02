@@ -42,18 +42,19 @@ export default {
         Account: this.form.username,
         Password: this.form.password,
       };
-      let res = await this.$store.dispatch("userlogin", req);
-      if (res) {
-        this.$message({
-          message: "登录成功",
-          type: "success",
-        });
+      await this.$store.dispatch("userlogin", req);
+      if (this.$store.state.error == "") {
         this.$router.push({
           path: "/",
         });
         location.reload()
+        this.$message({
+          message: "登录成功",
+          type: "success",
+        });
       } else {
-        this.$message.error("登录失败，请检查输入内容");
+        this.$message.error(this.$store.state.error);
+        this.$store.dispatch("clear")
       }
     },
   },

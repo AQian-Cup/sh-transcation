@@ -9,13 +9,18 @@ export default new Vuex.Store({
     account: "",
     username: "",
     userPhoto: "",
+    error:"",
     homePosts: [],
     searchPosts: [],
     replyUser: "",
   },
   mutations: {
     USERLOGIN(state, data) {
-      window.localStorage.setItem("token", data.Token);
+      if (data.Token) {
+        window.localStorage.setItem("token", data.Token);
+      }else {
+        state.error = data.Result
+      }
     },
     SHOW(state, data) {
       state.homePosts = data;
@@ -27,26 +32,24 @@ export default new Vuex.Store({
       if (data) {
         state.account = data.Account;
         state.username = data.Username;
-        state.userPhoto = data.Photo_name
-      }else{
+        state.userPhoto = data.Photo_name;
+      } else {
         state.account = "";
         state.username = "";
         state.userPhoto = "";
       }
     },
-    REPLY(state,data){
-      state.replyUser = data
+    REPLY(state, data) {
+      state.replyUser = data;
     },
+    CLEAR(state){
+      state.error = ""
+    }
   },
   actions: {
     async userlogin({ commit }, data) {
       let res = await api.choose.login(data);
-      if (res.data.Account) {
-        commit("USERLOGIN", res.data);
-        return true;
-      } else {
-        return false;
-      }
+      commit("USERLOGIN", res.data);
     },
     async show({ commit }) {
       let res = await api.show.show();
@@ -60,8 +63,11 @@ export default new Vuex.Store({
       let res = await api.person.verify();
       commit("VERIFY", res.data);
     },
-    reply({commit},data){
-      commit("REPLY",data)
+    reply({ commit }, data) {
+      commit("REPLY", data);
     },
+    clear({commit}){
+      commit("CLEAR")
+    }
   },
 });
